@@ -5,7 +5,7 @@ import { asset, SPLINE_GLOBE } from "@/lib/asset";
 import { NATIONALITIES, DESTINATIONS } from "@/lib/content";
 import { PassportIcon, PinIcon, ChevronDown, ArrowIcon } from "./Icons";
 
-const WORDS = ["Destination", "Adventure", "Journey", "Escape"];
+const WORDS = ["Destination", "Journey", "Adventure"];
 
 export default function Hero() {
   const [nationality, setNationality] = useState("");
@@ -49,17 +49,27 @@ export default function Hero() {
       <div className="container-x relative">
         {/* Heading */}
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="text-3xl font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl md:text-[3.4rem]">
-            Where Will Your Next
-            <br />
-            <span className="relative inline-block min-w-[4ch] align-baseline">
-              <span key={wordIndex} className="gradient-text inline-block animate-[floaty_0.6s_ease]">
+          <h1 className="font-semibold text-ink" style={{ letterSpacing: "-0.03em" }}>
+            <span
+              className="block"
+              style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.625rem)", lineHeight: 1.1 }}
+            >
+              Where Will Your Next
+            </span>
+            <span
+              className="block"
+              style={{ fontSize: "clamp(2.5rem, 6.2vw, 4.5rem)", lineHeight: 1.04 }}
+            >
+              <span key={wordIndex} className="gradient-text animate-[floaty_0.6s_ease]">
                 {WORDS[wordIndex]}
-              </span>
-            </span>{" "}
-            Take You?
+              </span>{" "}
+              Take You?
+            </span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base text-ink-muted sm:text-lg">
+          <p
+            className="mx-auto mt-5 max-w-2xl text-ink-muted"
+            style={{ fontSize: "clamp(1.05rem, 1.9vw, 1.6rem)", fontWeight: 400 }}
+          >
             Plan smarter. Travel better. Create memories that last.
           </p>
         </div>

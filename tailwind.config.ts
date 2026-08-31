@@ -11,14 +11,15 @@ export default {
         brand: {
           DEFAULT: "#6C4CF1",
           600: "#5A39E4",
+          accent: "#5B3FE9",
           50: "#F1EEFE",
           100: "#E7E1FC",
           200: "#D6CCFA",
         },
         ink: {
-          DEFAULT: "#141326",
+          DEFAULT: "#0B1B2E",
           soft: "#3A3B4A",
-          muted: "#7A7B8A",
+          muted: "#858585",
         },
         mist: {
           blue: "#F3F7FC",
@@ -26,7 +27,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        sans: ["var(--font-somar)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         pill: "53px",
