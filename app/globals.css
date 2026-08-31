@@ -5,7 +5,7 @@
 :root {
   --brand: #6c4cf1;
   --brand-600: #5a39e4;
-  --ink: #0f1020;
+  --ink: #141326;
 }
 
 * {
@@ -20,6 +20,7 @@ html {
 body {
   color: var(--ink);
   background: #ffffff;
+  overflow-x: hidden;
 }
 
 @layer components {
@@ -28,26 +29,30 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-pill bg-gradient-to-br from-brand to-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg;
+    @apply inline-flex items-center justify-center gap-2 rounded-pill bg-gradient-to-br from-brand to-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-transform duration-200 hover:-translate-y-0.5;
   }
 
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-pill border border-black/10 bg-white px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-brand/40 hover:text-brand;
+  .btn-soft {
+    @apply inline-flex items-center justify-between gap-3 rounded-pill bg-brand-50 py-2 pl-6 pr-2 text-sm font-semibold text-ink transition-colors hover:bg-brand-100;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-br from-brand to-brand-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand to-brand-600 bg-clip-text text-transparent;
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-pill bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-600;
+    @apply inline-flex items-center gap-2 rounded-pill bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-600;
+  }
+
+  .section-title {
+    @apply text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl md:text-[2.6rem];
   }
 }
 
-/* Subtle reveal on scroll */
+/* Reveal on scroll */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(26px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.is-visible {
@@ -55,13 +60,15 @@ body {
   transform: none;
 }
 
+/* Animated hero word */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.floaty { animation: floaty 6s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  html {
-    scroll-behavior: auto;
-  }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .floaty { animation: none; }
+  html { scroll-behavior: auto; }
 }

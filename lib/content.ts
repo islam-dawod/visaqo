@@ -109,15 +109,13 @@ export const TESTIMONIALS = [
 export const DISCOUNTS = [
   {
     percent: "24%",
-    title: "Group Travelers",
-    desc: "Get 24% off when you apply as a group of four or more travelers.",
-    tone: "from-brand to-brand-600",
+    title: "Group Traveler",
+    image: "/assets/discount-group.png",
   },
   {
     percent: "30%",
-    title: "Previous Travelers",
-    desc: "Returning customers unlock 30% off every new visa application.",
-    tone: "from-[#1B1C39] to-[#333569]",
+    title: "Previous Traveler",
+    image: "/assets/discount-previous.png",
   },
 ];
 
@@ -141,5 +139,8 @@ export const QUICK_LINKS = [
 export const CONTACT = {
   address: "Street 15, Block 23, New Extension, Khartoum",
   phone: "+249 123 456 789",
-  email: "info@visaqo.com",
+  email: "info@visa-booking.com",
 };
+
+export const FOOTER_TAGLINE =
+  "Your trusted partner for visa applications. Making travel dreams come true for Sudanese travelers worldwide.";

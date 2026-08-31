@@ -19,14 +19,14 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-4 z-50">
       <div className="container-x">
         <nav
-          className={`mx-auto flex max-w-3xl items-center justify-between rounded-pill border px-4 py-2.5 transition-all duration-300 ${
+          className={`mx-auto flex max-w-2xl items-center justify-between gap-6 rounded-pill px-5 py-2.5 transition-all duration-300 ${
             scrolled
-              ? "border-black/5 bg-white/90 shadow-card backdrop-blur-md"
-              : "border-white/40 bg-white/70 backdrop-blur"
+              ? "border border-black/5 bg-white/90 shadow-card backdrop-blur-md"
+              : "border border-white/50 bg-white/60 backdrop-blur-md"
           }`}
         >
-          <a href="#top" className="pl-1">
-            <Logo />
+          <a href="#top" aria-label="VisaQo home" className="shrink-0">
+            <Logo height={24} />
           </a>
 
           <ul className="hidden items-center gap-7 md:flex">
@@ -42,16 +42,11 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <a href="#hero-form" className="btn-primary hidden md:inline-flex !px-5 !py-2.5">
-            Get Started
-          </a>
-
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
             className="inline-flex h-9 w-9 items-center justify-center rounded-full text-ink md:hidden"
           >
-            <span className="sr-only">Menu</span>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {open ? (
                 <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
@@ -63,24 +58,19 @@ export default function Navbar() {
         </nav>
 
         {open && (
-          <div className="mx-auto mt-2 max-w-3xl rounded-3xl border border-black/5 bg-white p-4 shadow-card md:hidden">
+          <div className="mx-auto mt-2 max-w-2xl rounded-3xl border border-black/5 bg-white p-3 shadow-card md:hidden">
             <ul className="flex flex-col gap-1">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-xl px-3 py-2.5 text-sm font-medium text-ink-soft hover:bg-brand-50 hover:text-brand-600"
+                    className="block rounded-2xl px-4 py-2.5 text-sm font-medium text-ink-soft hover:bg-brand-50 hover:text-brand-600"
                   >
                     {l.label}
                   </a>
                 </li>
               ))}
-              <li className="mt-1">
-                <a href="#hero-form" onClick={() => setOpen(false)} className="btn-primary w-full">
-                  Get Started
-                </a>
-              </li>
             </ul>
           </div>
         )}

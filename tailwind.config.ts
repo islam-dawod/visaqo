@@ -11,13 +11,18 @@ export default {
         brand: {
           DEFAULT: "#6C4CF1",
           600: "#5A39E4",
-          50: "#F1EDFE",
-          100: "#E6DEFC",
+          50: "#F1EEFE",
+          100: "#E7E1FC",
+          200: "#D6CCFA",
         },
         ink: {
-          DEFAULT: "#0F1020",
+          DEFAULT: "#141326",
           soft: "#3A3B4A",
-          muted: "#6B6C7B",
+          muted: "#7A7B8A",
+        },
+        mist: {
+          blue: "#F3F7FC",
+          lav: "#F4F1FD",
         },
       },
       fontFamily: {
@@ -27,8 +32,9 @@ export default {
         pill: "53px",
       },
       boxShadow: {
-        soft: "0 20px 60px -20px rgba(76, 57, 190, 0.25)",
-        card: "0 10px 40px -12px rgba(15, 16, 32, 0.12)",
+        soft: "0 24px 70px -24px rgba(76, 57, 190, 0.28)",
+        card: "0 14px 44px -16px rgba(20, 19, 38, 0.14)",
+        bar: "0 30px 60px -24px rgba(20, 19, 38, 0.18)",
       },
       maxWidth: {
         container: "1200px",

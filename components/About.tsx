@@ -1,72 +1,62 @@
 import Reveal from "./Reveal";
+import { asset } from "@/lib/asset";
 import { FEATURES } from "@/lib/content";
-import { GlobeIcon, ShieldIcon, BoltIcon } from "./Icons";
-
-const iconMap = { globe: GlobeIcon, shield: ShieldIcon, bolt: BoltIcon };
+import { ArrowIcon } from "./Icons";
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-24 py-20 sm:py-28">
+    <section id="about" className="scroll-mt-24 bg-gradient-to-b from-mist-blue to-white py-20 sm:py-28">
       <div className="container-x">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Visual */}
-          <Reveal>
-            <div className="relative">
-              <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand-50 to-transparent" />
-              <div className="grid grid-cols-2 gap-4">
-                <div className="mt-8 aspect-[3/4] rounded-3xl bg-gradient-to-br from-brand to-brand-600 shadow-soft" />
-                <div className="aspect-[3/4] rounded-3xl bg-gradient-to-br from-[#1B1C39] to-[#333569] shadow-card" />
-                <div className="col-span-2 flex items-center justify-between rounded-3xl border border-black/5 bg-white p-5 shadow-card">
-                  <div>
-                    <p className="text-2xl font-extrabold text-ink">190+</p>
-                    <p className="text-xs text-ink-muted">Destinations covered</p>
-                  </div>
-                  <div className="h-10 w-px bg-black/10" />
-                  <div>
-                    <p className="text-2xl font-extrabold text-ink">50k+</p>
-                    <p className="text-xs text-ink-muted">Applications handled</p>
-                  </div>
-                </div>
-              </div>
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Person over blob */}
+          <Reveal className="relative flex justify-center">
+            <div className="relative w-full max-w-md">
+              <img
+                src={asset("/assets/blob.png")}
+                alt=""
+                aria-hidden="true"
+                className="absolute left-1/2 top-1/2 -z-10 w-[112%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-90"
+              />
+              <img
+                src={asset("/assets/about-person.png")}
+                alt="A VisaQo travel specialist"
+                className="relative mx-auto w-full max-w-[380px] drop-shadow-xl"
+              />
             </div>
           </Reveal>
 
           {/* Copy */}
           <Reveal delay={100}>
-            <div>
-              <span className="eyebrow">About VisaQo</span>
-              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-                Your Visa Journey,{" "}
-                <span className="gradient-text">Made Simple.</span>
-              </h2>
-              <p className="mt-4 max-w-lg text-ink-muted">
-                VisaQo is a modern visa booking platform designed to make
-                international travel simple and stress-free. We help travelers
-                understand visa requirements, submit applications easily, and
-                track their progress — all in one place.
-              </p>
+            <span className="eyebrow">About visa Q.o</span>
+            <h2 className="mt-4 section-title">
+              Your Visa Journey,
+              <br />
+              Made <span className="gradient-text">Simple.</span>
+            </h2>
+            <p className="mt-4 max-w-lg text-ink-muted">
+              Visa Qo is a modern visa booking platform designed to make
+              international travel simple and stress-free. We help travelers
+              understand visa requirements, submit applications easily, and track
+              their progress — all in one place.
+            </p>
 
-              <ul className="mt-8 space-y-4">
-                {FEATURES.map((f) => {
-                  const Icon = iconMap[f.icon as keyof typeof iconMap];
-                  return (
-                    <li key={f.title} className="flex gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-50 text-brand-600">
-                        <Icon className="h-5 w-5" />
-                      </span>
-                      <div>
-                        <h3 className="font-semibold text-ink">{f.title}</h3>
-                        <p className="text-sm text-ink-muted">{f.desc}</p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+            <ul className="mt-7 space-y-3.5">
+              {FEATURES.map((f) => (
+                <li key={f.title} className="flex items-center gap-3">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-100">
+                    <span className="h-2 w-2 rounded-full bg-brand" />
+                  </span>
+                  <span className="font-medium text-ink-soft">{f.title}</span>
+                </li>
+              ))}
+            </ul>
 
-              <a href="#hero-form" className="btn-primary mt-8">
-                Start Your Application
-              </a>
-            </div>
+            <a href="#hero-form" className="btn-soft mt-8">
+              Start Your Application
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-600 text-white">
+                <ArrowIcon className="h-4 w-4" />
+              </span>
+            </a>
           </Reveal>
         </div>
       </div>

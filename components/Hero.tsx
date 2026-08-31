@@ -1,75 +1,93 @@
 "use client";
 
-import { useState } from "react";
-import Globe from "./Globe";
-import WorldMap from "./WorldMap";
+import { useEffect, useState } from "react";
+import { asset, SPLINE_GLOBE } from "@/lib/asset";
 import { NATIONALITIES, DESTINATIONS } from "@/lib/content";
 import { PassportIcon, PinIcon, ChevronDown, ArrowIcon } from "./Icons";
+
+const WORDS = ["Destination", "Adventure", "Journey", "Escape"];
 
 export default function Hero() {
   const [nationality, setNationality] = useState("");
   const [destination, setDestination] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setWordIndex((i) => (i + 1) % WORDS.length), 2600);
+    return () => clearInterval(id);
+  }, []);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const target = document.querySelector("#process");
-    target?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector("#process")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="hero" className="relative overflow-hidden pt-36 pb-40 sm:pt-40">
-      {/* backdrop */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-50/60 via-white to-white" />
-        <WorldMap className="absolute inset-x-0 top-10 h-[520px] w-full" />
-      </div>
+    <section id="hero" className="relative overflow-hidden pb-28 pt-32 sm:pt-36">
+      {/* World map backdrop */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[720px] bg-contain bg-top bg-no-repeat opacity-[0.5]"
+        style={{ backgroundImage: `url(${asset("/assets/world-map.png")})` }}
+      />
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-b from-white/40 via-white/70 to-white" />
+
+      {/* floating clouds */}
+      <img
+        src={asset("/assets/cloud.png")}
+        alt=""
+        aria-hidden="true"
+        className="floaty pointer-events-none absolute left-[-60px] top-[360px] -z-10 w-64 opacity-80"
+      />
+      <img
+        src={asset("/assets/cloud.png")}
+        alt=""
+        aria-hidden="true"
+        className="floaty pointer-events-none absolute right-[-40px] top-[300px] -z-10 w-72 opacity-70"
+        style={{ animationDelay: "1.5s" }}
+      />
 
       <div className="container-x relative">
+        {/* Heading */}
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl">
-            Where Will Your Next{" "}
-            <span className="gradient-text">Journey</span> Take You?
+          <h1 className="text-3xl font-extrabold leading-[1.12] tracking-tight text-ink sm:text-5xl md:text-[3.4rem]">
+            Where Will Your Next
+            <br />
+            <span className="relative inline-block min-w-[4ch] align-baseline">
+              <span key={wordIndex} className="gradient-text inline-block animate-[floaty_0.6s_ease]">
+                {WORDS[wordIndex]}
+              </span>
+            </span>{" "}
+            Take You?
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-base text-ink-muted sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl text-base text-ink-muted sm:text-lg">
             Plan smarter. Travel better. Create memories that last.
           </p>
         </div>
 
-        {/* Globe */}
-        <div className="relative mt-10 flex justify-center">
-          <Globe className="h-[300px] w-[300px] sm:h-[380px] sm:w-[380px]" />
+        {/* 3D Spline globe (top band cropped to sit under the heading) */}
+        <div className="relative mx-auto mt-2 h-[240px] w-full max-w-[640px] overflow-hidden sm:h-[300px]">
+          <iframe
+            src={SPLINE_GLOBE}
+            title="Interactive 3D globe"
+            className="pointer-events-none absolute inset-x-0 -top-[150px] h-[560px] w-full"
+            style={{ border: "none", background: "transparent" }}
+            loading="lazy"
+          />
         </div>
       </div>
 
-      {/* Search form */}
-      <div id="hero-form" className="container-x relative -mt-20 sm:-mt-24">
+      {/* Search bar */}
+      <div id="hero-form" className="container-x relative -mt-6 sm:-mt-8">
         <form
           onSubmit={onSubmit}
-          className="mx-auto grid max-w-4xl grid-cols-1 gap-3 rounded-3xl border border-black/5 bg-white p-3 shadow-soft sm:grid-cols-[1fr_1fr_auto] sm:rounded-pill sm:p-2.5"
+          className="mx-auto grid max-w-4xl grid-cols-1 gap-2 rounded-[2rem] border border-black/5 bg-white p-3 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:rounded-pill sm:p-2.5 sm:pl-6"
         >
-          <Field
-            icon={<PassportIcon className="h-5 w-5 text-brand-600" />}
-            label="My passport"
-          >
-            <Select
-              value={nationality}
-              onChange={setNationality}
-              placeholder="Nationality"
-              options={NATIONALITIES}
-            />
+          <Field icon={<PassportIcon className="h-5 w-5 text-brand-600" />} label="My passport">
+            <Select value={nationality} onChange={setNationality} placeholder="Nationality" options={NATIONALITIES} />
           </Field>
 
-          <Field
-            icon={<PinIcon className="h-5 w-5 text-brand-600" />}
-            label="Destination"
-            divider
-          >
-            <Select
-              value={destination}
-              onChange={setDestination}
-              placeholder="Destination"
-              options={DESTINATIONS}
-            />
+          <Field icon={<PinIcon className="h-5 w-5 text-brand-600" />} label="Destination" divider>
+            <Select value={destination} onChange={setDestination} placeholder="Destination" options={DESTINATIONS} />
           </Field>
 
           <button type="submit" className="btn-primary w-full sm:w-auto">
@@ -95,7 +113,7 @@ function Field({
 }) {
   return (
     <div
-      className={`flex items-center gap-3 rounded-2xl px-4 py-2.5 sm:rounded-pill ${
+      className={`flex items-center gap-3 rounded-2xl px-4 py-2 ${
         divider ? "sm:border-l sm:border-black/10" : ""
       }`}
     >
