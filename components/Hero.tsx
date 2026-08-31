@@ -31,24 +31,30 @@ export default function Hero() {
       />
       <div className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-b from-white/40 via-white/70 to-white" />
 
-      {/* floating clouds */}
+      {/* drifting clouds (like the original design) — overlap the globe so they read as clouds */}
       <img
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="floaty pointer-events-none absolute left-[-60px] top-[360px] -z-10 w-64 opacity-80"
+        className="drift-l pointer-events-none absolute left-[2%] top-[430px] z-[2] w-[300px] opacity-95 sm:w-[400px]"
       />
       <img
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="floaty pointer-events-none absolute right-[-40px] top-[300px] -z-10 w-72 opacity-70"
-        style={{ animationDelay: "1.5s" }}
+        className="drift-r pointer-events-none absolute right-[2%] top-[360px] z-[2] w-[320px] opacity-95 sm:w-[420px]"
+      />
+      <img
+        src={asset("/assets/cloud.png")}
+        alt=""
+        aria-hidden="true"
+        className="drift-l pointer-events-none absolute left-1/2 top-[560px] z-[2] w-[520px] -translate-x-1/2 opacity-95 sm:w-[680px]"
+        style={{ animationDelay: "2s", animationDuration: "24s" }}
       />
 
       <div className="container-x relative">
         {/* Heading */}
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className="font-semibold text-ink" style={{ letterSpacing: "-0.03em" }}>
             <span
               className="block"
@@ -74,12 +80,12 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* 3D Spline globe (top band cropped to sit under the heading) */}
-        <div className="relative mx-auto mt-2 h-[240px] w-full max-w-[640px] overflow-hidden sm:h-[300px]">
+        {/* 3D Spline globe — full, uncropped, matching the original composition */}
+        <div className="relative mx-auto -mt-4 aspect-[1482/878] w-full max-w-[940px] overflow-visible">
           <iframe
             src={SPLINE_GLOBE}
             title="Interactive 3D globe"
-            className="pointer-events-none absolute inset-x-0 -top-[150px] h-[560px] w-full"
+            className="pointer-events-none absolute inset-0 h-full w-full"
             style={{ border: "none", background: "transparent" }}
             loading="lazy"
           />
@@ -87,7 +93,7 @@ export default function Hero() {
       </div>
 
       {/* Search bar */}
-      <div id="hero-form" className="container-x relative -mt-6 sm:-mt-8">
+      <div id="hero-form" className="container-x relative z-10 -mt-[120px] sm:-mt-[150px]">
         <form
           onSubmit={onSubmit}
           className="mx-auto grid max-w-4xl grid-cols-1 gap-2 rounded-[2rem] border border-black/5 bg-white p-3 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:rounded-pill sm:p-2.5 sm:pl-6"

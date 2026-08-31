@@ -73,8 +73,22 @@ body {
 }
 .floaty { animation: floaty 6s ease-in-out infinite; }
 
+/* Slow drifting clouds */
+@keyframes drift-l {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(40px) translateY(-12px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+@keyframes drift-r {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-40px) translateY(-10px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+.drift-l { animation: drift-l 22s ease-in-out infinite; }
+.drift-r { animation: drift-r 20s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .floaty { animation: none; }
+  .floaty, .drift-l, .drift-r { animation: none; }
   html { scroll-behavior: auto; }
 }
