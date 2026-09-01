@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
 import { PROCESS_STEPS } from "@/lib/content";
 import { ArrowIcon } from "./Icons";
@@ -25,10 +26,10 @@ export default function Process() {
               We simplify the visa application process so you can focus on planning
               your trip — not paperwork.
             </p>
-            <a href="#hero-form" className="btn-primary mt-8">
+            <Link href="/form" className="btn-primary mt-8">
               Start Your Application
               <ArrowIcon className="h-4 w-4" />
-            </a>
+            </Link>
           </Reveal>
 
           {/* Right: flowchart (desktop) */}

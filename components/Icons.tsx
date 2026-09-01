@@ -135,6 +135,58 @@ export function ChevronDown(p: IconProps) {
   );
 }
 
+export function PlaneIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M10 4.5c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8v5l7 4v2l-7-2.2V19l2 1.4V22l-3.8-1L8 22v-1.6L10 19v-5.7L3 15.5v-2l7-4v-5z" />
+    </svg>
+  );
+}
+
+export function IdIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <circle cx="8.5" cy="11" r="2" />
+      <path d="M13 9h5M13 13h5M5.5 15.5c.6-1.3 1.7-2 3-2s2.4.7 3 2" />
+    </svg>
+  );
+}
+
+export function CheckCircleIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M8.5 12.5l2.5 2.5 4.5-5" />
+    </svg>
+  );
+}
+
+export function MinusIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M5 12h14" />
+    </svg>
+  );
+}
+
+export function PlusIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
+
+export function CalendarIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M3 9h18M8 3v4M16 3v4" />
+    </svg>
+  );
+}
+
 export const ICONS = {
   globe: GlobeIcon,
   shield: ShieldIcon,

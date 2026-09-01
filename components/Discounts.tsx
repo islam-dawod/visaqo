@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
 import { asset } from "@/lib/asset";
 import { DISCOUNTS } from "@/lib/content";
@@ -59,10 +60,10 @@ export default function Discounts() {
             <h3 className="text-3xl font-semibold tracking-tight text-ink sm:text-[2.6rem]">
               Are you ready to book with us?
             </h3>
-            <a href="#hero-form" className="btn-primary mx-auto mt-8">
+            <Link href="/form" className="btn-primary mx-auto mt-8">
               Book Now
               <ArrowIcon className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </Reveal>
       </div>

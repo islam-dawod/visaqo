@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Logo from "./Logo";
 import { NAV_LINKS } from "@/lib/content";
 
@@ -25,19 +26,19 @@ export default function Navbar() {
               : "border border-white/50 bg-white/60 backdrop-blur-md"
           }`}
         >
-          <a href="#top" aria-label="VisaQo home" className="shrink-0">
+          <Link href="/" aria-label="VisaQo home" className="shrink-0">
             <Logo height={24} />
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-7 md:flex">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <a
+                <Link
                   href={l.href}
                   className="text-sm font-medium text-ink-soft transition-colors hover:text-brand-600"
                 >
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -62,13 +63,13 @@ export default function Navbar() {
             <ul className="flex flex-col gap-1">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
-                  <a
+                  <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
                     className="block rounded-2xl px-4 py-2.5 text-sm font-medium text-ink-soft hover:bg-brand-50 hover:text-brand-600"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

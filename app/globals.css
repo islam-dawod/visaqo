@@ -54,6 +54,14 @@ body {
     color: var(--ink);
     font-size: clamp(2rem, 4.4vw, 2.75rem);
   }
+
+  .field-label {
+    @apply mb-2 block text-sm font-semibold text-ink;
+  }
+
+  .field-input {
+    @apply w-full rounded-2xl border border-black/10 bg-white px-4 py-3.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted focus:border-brand/60 focus:ring-2 focus:ring-brand/15;
+  }
 }
 
 /* Reveal on scroll */

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
 import { asset } from "@/lib/asset";
 import { FEATURES } from "@/lib/content";
@@ -51,12 +52,12 @@ export default function About() {
               ))}
             </ul>
 
-            <a href="#hero-form" className="btn-soft mt-8">
+            <Link href="/form" className="btn-soft mt-8">
               Start Your Application
               <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-600 text-white">
                 <ArrowIcon className="h-4 w-4" />
               </span>
-            </a>
+            </Link>
           </Reveal>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { asset, SPLINE_GLOBE } from "@/lib/asset";
 import { NATIONALITIES, DESTINATIONS } from "@/lib/content";
 import { PassportIcon, PinIcon, ChevronDown, ArrowIcon } from "./Icons";
@@ -11,6 +12,7 @@ export default function Hero() {
   const [nationality, setNationality] = useState("");
   const [destination, setDestination] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const id = setInterval(() => setWordIndex((i) => (i + 1) % WORDS.length), 2600);
@@ -19,7 +21,7 @@ export default function Hero() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    document.querySelector("#process")?.scrollIntoView({ behavior: "smooth" });
+    router.push("/form");
   };
 
   return (
