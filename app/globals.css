@@ -95,8 +95,25 @@ body {
 .drift-l { animation: drift-l 22s ease-in-out infinite; }
 .drift-r { animation: drift-r 20s ease-in-out infinite; }
 
+/* Typewriter caret */
+@keyframes caret-blink {
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+.type-caret {
+  display: inline-block;
+  width: 3px;
+  height: 0.9em;
+  margin-left: 2px;
+  vertical-align: -0.05em;
+  border-radius: 2px;
+  background: var(--accent);
+  animation: caret-blink 1s step-end infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .floaty, .drift-l, .drift-r { animation: none; }
+  .type-caret { animation: none; opacity: 1; }
   html { scroll-behavior: auto; }
 }
