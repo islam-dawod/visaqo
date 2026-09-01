@@ -80,16 +80,15 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* 3D Spline globe — small, rounded top hemisphere (like the design).
-            The Spline scene fits the globe to the HEIGHT of a wide iframe, so a
-            wide/short iframe yields a small rounded globe; the window then clips
-            the lower half. */}
-        <div className="relative mx-auto -mt-2 h-[220px] w-full overflow-hidden sm:h-[250px]">
-          <div className="absolute left-1/2 top-0 h-[380px] w-[760px] -translate-x-1/2 sm:h-[440px] sm:w-[900px]">
+        {/* 3D Spline globe — a circular mask guarantees a perfectly round globe
+            regardless of how the Spline scene frames it; the window clips the
+            lower part so only the rounded top hemisphere shows (like the design). */}
+        <div className="relative mx-auto -mt-2 flex h-[215px] w-full justify-center overflow-hidden sm:h-[250px]">
+          <div className="h-[380px] w-[380px] shrink-0 overflow-hidden rounded-full sm:h-[460px] sm:w-[460px]">
             <iframe
               src={SPLINE_GLOBE}
               title="Interactive 3D globe"
-              className="pointer-events-none h-full w-full"
+              className="pointer-events-none h-full w-full scale-[1.15]"
               style={{ border: "none", background: "transparent" }}
               loading="lazy"
             />
