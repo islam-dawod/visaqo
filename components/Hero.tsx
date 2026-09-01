@@ -36,19 +36,19 @@ export default function Hero() {
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-l pointer-events-none absolute left-[2%] top-[430px] z-[2] w-[300px] opacity-95 sm:w-[400px]"
+        className="drift-l pointer-events-none absolute left-[4%] top-[360px] z-[2] w-[260px] opacity-95 sm:w-[360px]"
       />
       <img
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-r pointer-events-none absolute right-[2%] top-[360px] z-[2] w-[320px] opacity-95 sm:w-[420px]"
+        className="drift-r pointer-events-none absolute right-[4%] top-[300px] z-[2] w-[280px] opacity-95 sm:w-[380px]"
       />
       <img
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-l pointer-events-none absolute left-1/2 top-[560px] z-[2] w-[520px] -translate-x-1/2 opacity-95 sm:w-[680px]"
+        className="drift-l pointer-events-none absolute left-1/2 top-[430px] z-[2] w-[420px] -translate-x-1/2 opacity-90 sm:w-[560px]"
         style={{ animationDelay: "2s", animationDuration: "24s" }}
       />
 
@@ -80,20 +80,22 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* 3D Spline globe — full, uncropped, matching the original composition */}
-        <div className="relative mx-auto -mt-4 aspect-[1482/878] w-full max-w-[940px] overflow-visible">
-          <iframe
-            src={SPLINE_GLOBE}
-            title="Interactive 3D globe"
-            className="pointer-events-none absolute inset-0 h-full w-full"
-            style={{ border: "none", background: "transparent" }}
-            loading="lazy"
-          />
+        {/* 3D Spline globe — clipped so only the top hemisphere shows (like the design) */}
+        <div className="relative mx-auto -mt-2 h-[300px] w-full max-w-[880px] overflow-hidden sm:h-[380px]">
+          <div className="absolute inset-x-0 top-0 aspect-[1482/878]">
+            <iframe
+              src={SPLINE_GLOBE}
+              title="Interactive 3D globe"
+              className="pointer-events-none h-full w-full"
+              style={{ border: "none", background: "transparent" }}
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
 
       {/* Search bar */}
-      <div id="hero-form" className="container-x relative z-10 -mt-[120px] sm:-mt-[150px]">
+      <div id="hero-form" className="container-x relative z-10 -mt-14 sm:-mt-16">
         <form
           onSubmit={onSubmit}
           className="mx-auto grid max-w-4xl grid-cols-1 gap-2 rounded-[2rem] border border-black/5 bg-white p-3 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:rounded-pill sm:p-2.5 sm:pl-6"
