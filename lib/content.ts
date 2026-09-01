@@ -88,24 +88,21 @@ export const PROCESS_STEPS = [
 
 export const TESTIMONIALS = [
   {
-    name: "Ahmed Hassan",
-    role: "Tourist Visa · United Kingdom",
-    quote:
-      "VisaQo made my UK visa application effortless. Everything was clear, and I got approved faster than I expected.",
-    rating: 5,
+    name: "Maxin Will",
+    role: "Customer",
+    quote: "Everything was organized in one place, making travel planning simple and efficient.",
+    rating: 4,
   },
   {
     name: "Sara Ibrahim",
-    role: "Student Visa · Canada",
-    quote:
-      "The team guided me through every document. Tracking my application in one place gave me real peace of mind.",
+    role: "Customer",
+    quote: "The team guided me through every document, and tracking my application gave me real peace of mind.",
     rating: 5,
   },
   {
-    name: "Mohammed Ali",
-    role: "Business Visa · Schengen",
-    quote:
-      "Professional, fast, and reliable. I now use VisaQo for all my business travel across Europe.",
+    name: "Ahmed Hassan",
+    role: "Customer",
+    quote: "VisaQo made my UK visa application effortless — clear steps and a fast approval.",
     rating: 5,
   },
 ];
