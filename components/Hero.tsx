@@ -36,19 +36,19 @@ export default function Hero() {
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-l pointer-events-none absolute left-[4%] top-[360px] z-[2] w-[260px] opacity-95 sm:w-[360px]"
+        className="drift-l pointer-events-none absolute left-[24%] top-[320px] z-[2] w-[200px] opacity-95 sm:w-[280px]"
       />
       <img
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-r pointer-events-none absolute right-[4%] top-[300px] z-[2] w-[280px] opacity-95 sm:w-[380px]"
+        className="drift-r pointer-events-none absolute right-[24%] top-[280px] z-[2] w-[210px] opacity-95 sm:w-[300px]"
       />
       <img
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-l pointer-events-none absolute left-1/2 top-[430px] z-[2] w-[420px] -translate-x-1/2 opacity-90 sm:w-[560px]"
+        className="drift-l pointer-events-none absolute left-1/2 top-[380px] z-[2] w-[340px] -translate-x-1/2 opacity-90 sm:w-[440px]"
         style={{ animationDelay: "2s", animationDuration: "24s" }}
       />
 
@@ -80,9 +80,12 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* 3D Spline globe — clipped so only the top hemisphere shows (like the design) */}
-        <div className="relative mx-auto -mt-2 h-[300px] w-full max-w-[880px] overflow-hidden sm:h-[380px]">
-          <div className="absolute inset-x-0 top-0 aspect-[1482/878]">
+        {/* 3D Spline globe — small, rounded top hemisphere (like the design).
+            The Spline scene fits the globe to the HEIGHT of a wide iframe, so a
+            wide/short iframe yields a small rounded globe; the window then clips
+            the lower half. */}
+        <div className="relative mx-auto -mt-2 h-[220px] w-full overflow-hidden sm:h-[250px]">
+          <div className="absolute left-1/2 top-0 h-[380px] w-[760px] -translate-x-1/2 sm:h-[440px] sm:w-[900px]">
             <iframe
               src={SPLINE_GLOBE}
               title="Interactive 3D globe"
