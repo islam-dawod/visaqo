@@ -2,11 +2,18 @@ import Reveal from "./Reveal";
 import { asset } from "@/lib/asset";
 import { DISCOUNTS } from "@/lib/content";
 import { ArrowIcon } from "./Icons";
+import DiscountClouds from "./DiscountClouds";
 
 export default function Discounts() {
   return (
-    <section id="discounts" className="scroll-mt-24 py-20 sm:py-28">
-      <div className="container-x">
+    <section
+      id="discounts"
+      className="relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-white via-[#DCEBFB] to-[#AFD2F1] py-20 sm:py-28"
+    >
+      {/* drifting clouds entering from the sides */}
+      <DiscountClouds />
+
+      <div className="container-x relative z-10">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="section-title">
             Exclusive Deals &amp; <span className="gradient-text">Discounts</span>
@@ -29,7 +36,6 @@ export default function Discounts() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-black/10" />
 
-                {/* top row */}
                 <div className="absolute inset-x-6 top-6 flex items-center justify-between">
                   <span className="rounded-pill bg-brand/85 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur">
                     {d.percent} Off
@@ -39,7 +45,6 @@ export default function Discounts() {
                   </span>
                 </div>
 
-                {/* bottom text */}
                 <p className="absolute inset-x-7 bottom-7 max-w-[15rem] text-2xl font-semibold leading-snug text-white">
                   Get {d.percent} Discounts for {d.title}
                 </p>
@@ -48,19 +53,13 @@ export default function Discounts() {
           ))}
         </div>
 
-        {/* CTA banner */}
+        {/* CTA — text over the clouds */}
         <Reveal>
-          <div
-            id="contact"
-            className="mt-8 flex flex-col items-center justify-between gap-6 overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand to-brand-600 p-8 text-center text-white shadow-soft sm:flex-row sm:p-10 sm:text-left"
-          >
-            <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+          <div id="contact" className="relative z-10 mt-24 text-center sm:mt-28">
+            <h3 className="text-3xl font-semibold tracking-tight text-ink sm:text-[2.6rem]">
               Are you ready to book with us?
             </h3>
-            <a
-              href="#hero-form"
-              className="inline-flex shrink-0 items-center gap-2 rounded-pill bg-white px-8 py-3.5 text-sm font-semibold text-brand-600 transition-transform hover:-translate-y-0.5"
-            >
+            <a href="#hero-form" className="btn-primary mx-auto mt-8">
               Book Now
               <ArrowIcon className="h-4 w-4" />
             </a>
