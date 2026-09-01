@@ -1,6 +1,6 @@
 import Logo from "./Logo";
 import { VISA_SERVICES, QUICK_LINKS, CONTACT, FOOTER_TAGLINE } from "@/lib/content";
-import { PinIcon, PhoneIcon, MailIcon } from "./Icons";
+import { PinIcon, PhoneIcon, MailIcon, FacebookIcon, WhatsappIcon } from "./Icons";
 
 export default function Footer() {
   return (
@@ -13,6 +13,22 @@ export default function Footer() {
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
               {FOOTER_TAGLINE}
             </p>
+            <div className="mt-5 flex gap-3">
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="grid h-10 w-10 place-items-center rounded-full bg-ink text-white transition-colors hover:bg-brand-600"
+              >
+                <FacebookIcon />
+              </a>
+              <a
+                href="#"
+                aria-label="WhatsApp"
+                className="grid h-10 w-10 place-items-center rounded-full bg-ink text-white transition-colors hover:bg-brand-600"
+              >
+                <WhatsappIcon />
+              </a>
+            </div>
           </div>
 
           {/* Services */}

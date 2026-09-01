@@ -130,11 +130,12 @@ export const VISA_SERVICES = [
 ];
 
 export const QUICK_LINKS = [
-  { label: "About Us", href: "#about" },
-  { label: "How It Works", href: "#process" },
-  { label: "Discounts", href: "#discounts" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Privacy Policy", href: "#" },
+  { label: "About Us", href: "/#about" },
+  { label: "How It Works", href: "/#process" },
+  { label: "Discounts", href: "/#discounts" },
+  { label: "FAQ", href: "/#" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Privacy Policy", href: "/#" },
 ];
 
 export const CONTACT = {

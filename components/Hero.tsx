@@ -38,19 +38,19 @@ export default function Hero() {
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-l pointer-events-none absolute left-[14%] top-[360px] z-[2] w-[200px] opacity-95 sm:w-[280px]"
+        className="drift-l pointer-events-none absolute left-[24%] top-[360px] z-[2] w-[200px] opacity-95 sm:w-[280px]"
       />
       <img
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-r pointer-events-none absolute right-[34%] top-[320px] z-[2] w-[210px] opacity-95 sm:w-[300px]"
+        className="drift-r pointer-events-none absolute right-[24%] top-[320px] z-[2] w-[210px] opacity-95 sm:w-[300px]"
       />
       <img
         src={asset("/assets/cloud.png")}
         alt=""
         aria-hidden="true"
-        className="drift-l pointer-events-none absolute left-[38%] top-[420px] z-[2] w-[340px] -translate-x-1/2 opacity-90 sm:w-[440px]"
+        className="drift-l pointer-events-none absolute left-1/2 top-[420px] z-[2] w-[340px] -translate-x-1/2 opacity-90 sm:w-[440px]"
         style={{ animationDelay: "2s", animationDuration: "24s" }}
       />
 
@@ -85,8 +85,8 @@ export default function Hero() {
         {/* 3D Spline globe — a circular mask guarantees a perfectly round globe
             regardless of how the Spline scene frames it; the window clips the
             lower part so only the rounded top hemisphere shows (like the design). */}
-        <div className="relative mx-auto mt-8 flex h-[215px] w-full justify-center overflow-hidden sm:mt-12 sm:h-[250px]">
-          <div className="h-[380px] w-[380px] shrink-0 -translate-x-16 overflow-hidden rounded-full sm:h-[460px] sm:w-[460px] sm:-translate-x-28">
+        <div className="relative mx-auto mt-6 flex h-[215px] w-full justify-center overflow-hidden sm:h-[250px]">
+          <div className="h-[380px] w-[380px] shrink-0 overflow-hidden rounded-full sm:h-[460px] sm:w-[460px]">
             <iframe
               src={SPLINE_GLOBE}
               title="Interactive 3D globe"

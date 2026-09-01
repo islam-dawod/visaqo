@@ -187,6 +187,22 @@ export function CalendarIcon(p: IconProps) {
   );
 }
 
+export function FacebookIcon(p: IconProps) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" {...p}>
+      <path d="M22 12a10 10 0 10-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z" />
+    </svg>
+  );
+}
+
+export function WhatsappIcon(p: IconProps) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" {...p}>
+      <path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.4A10 10 0 1012 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.5-1.2-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.3.5c-.1.2-.3.3-.1.6.1.3.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.9-.1 1.7z" />
+    </svg>
+  );
+}
+
 export const ICONS = {
   globe: GlobeIcon,
   shield: ShieldIcon,
