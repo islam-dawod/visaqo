@@ -44,19 +44,15 @@ export default function About() {
             <ul className="mt-7 space-y-3.5">
               {FEATURES.map((f) => (
                 <li key={f.title} className="flex items-center gap-3">
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-100">
-                    <span className="h-2 w-2 rounded-full bg-brand" />
-                  </span>
+                  <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-brand" />
                   <span className="font-medium text-ink-soft">{f.title}</span>
                 </li>
               ))}
             </ul>
 
-            <Link href="/form" className="btn-soft mt-8">
+            <Link href="/form" className="btn-primary mt-8 !px-8 !py-4 text-base">
               Start Your Application
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-600 text-white">
-                <ArrowIcon className="h-4 w-4" />
-              </span>
+              <ArrowIcon className="h-4 w-4" />
             </Link>
           </Reveal>
         </div>

@@ -6,7 +6,8 @@ import { asset, SPLINE_GLOBE } from "@/lib/asset";
 import { NATIONALITIES, DESTINATIONS } from "@/lib/content";
 import { PassportIcon, PinIcon, ChevronDown, ArrowIcon } from "./Icons";
 
-const WORDS = ["Destination", "Journey", "Adventure", "Visa"];
+// Exact rotating words from the Framer design (rotatingWords attribute)
+const WORDS = ["Visa", "journey", "Destination"];
 
 export default function Hero() {
   const [nationality, setNationality] = useState("");
@@ -131,7 +132,7 @@ export default function Hero() {
             <Select value={destination} onChange={setDestination} placeholder="Destination" options={DESTINATIONS} />
           </Field>
 
-          <button type="submit" className="btn-primary w-full sm:w-auto">
+          <button type="submit" className="btn-primary w-full !rounded-[53px] !px-8 !text-[17px] !font-bold sm:w-auto">
             Get Start My Application
             <ArrowIcon className="h-4 w-4" />
           </button>
@@ -162,7 +163,7 @@ function Field({
         {icon}
       </span>
       <div className="min-w-0 flex-1 text-left">
-        <span className="block text-xs font-semibold text-ink">{label}</span>
+        <span className="block text-[17px] font-black leading-tight text-[#2e2e2e]">{label}</span>
         {children}
       </div>
     </div>
@@ -185,8 +186,8 @@ function Select({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full appearance-none bg-transparent pr-6 text-sm font-medium outline-none ${
-          value ? "text-ink" : "text-ink-muted"
+        className={`w-full appearance-none bg-transparent pr-6 text-base outline-none ${
+          value ? "text-ink" : "text-[#7b7b7b]"
         }`}
       >
         <option value="" disabled>
