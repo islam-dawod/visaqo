@@ -100,15 +100,14 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* 3D Spline globe — a circular mask guarantees a perfectly round globe
-            regardless of how the Spline scene frames it; the window clips the
-            lower part so only the rounded top hemisphere shows (like the design). */}
-        <div className="relative mx-auto mt-6 flex h-[215px] w-full justify-center overflow-hidden sm:h-[250px]">
-          <div className="h-[380px] w-[380px] shrink-0 overflow-hidden rounded-full sm:h-[460px] sm:w-[460px]">
+        {/* 3D Spline globe — full 3D sphere (no flat mask); a rectangular window
+            hides only the lower part behind the search bar, keeping the 3D look. */}
+        <div className="relative mx-auto mt-2 h-[290px] w-full overflow-hidden sm:h-[350px]">
+          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[760px] max-w-none -translate-x-1/2">
             <iframe
               src={SPLINE_GLOBE}
               title="Interactive 3D globe"
-              className="pointer-events-none h-full w-full scale-[1.15]"
+              className="pointer-events-none absolute inset-0 h-full w-full"
               style={{ border: "none", background: "transparent" }}
               loading="lazy"
             />
@@ -117,7 +116,7 @@ export default function Hero() {
       </div>
 
       {/* Search bar */}
-      <div id="hero-form" className="container-x relative z-10 -mt-14 sm:-mt-16">
+      <div id="hero-form" className="container-x relative z-10 -mt-12 sm:-mt-16">
         <form
           onSubmit={onSubmit}
           className="mx-auto grid max-w-4xl grid-cols-1 gap-2 rounded-[2rem] border border-black/5 bg-white p-3 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:rounded-pill sm:p-2.5 sm:pl-6"
