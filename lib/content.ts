@@ -1,8 +1,8 @@
 // Central content for the VisaQo landing page.
 
 export const NAV_LINKS = [
-  { label: "About Us", href: "/#about" },
-  { label: "Process", href: "/#process" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Process", href: "/process" },
   { label: "Discounts", href: "/#discounts" },
   { label: "Contact us", href: "/#contact" },
 ];
@@ -130,8 +130,8 @@ export const VISA_SERVICES = [
 ];
 
 export const QUICK_LINKS = [
-  { label: "About Us", href: "/#about" },
-  { label: "How It Works", href: "/#process" },
+  { label: "About Us", href: "/about-us" },
+  { label: "How It Works", href: "/process" },
   { label: "Discounts", href: "/#discounts" },
   { label: "FAQ", href: "/#" },
   { label: "Testimonials", href: "/#testimonials" },
