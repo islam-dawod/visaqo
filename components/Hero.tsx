@@ -104,8 +104,8 @@ export default function Hero() {
         {/* 3D Spline globe — large 3D sphere like the Framer design; a rectangular
             window shows the top ~45% (earth top hemisphere) with the lower part
             behind the search bar. */}
-        <div className="relative mx-auto mt-2 h-[240px] w-full overflow-hidden sm:h-[300px]">
-          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[900px] max-w-none -translate-x-1/2">
+        <div className="relative mx-auto mt-2 h-[210px] w-full overflow-hidden sm:h-[270px]">
+          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1080px] max-w-none -translate-x-1/2">
             <iframe
               src={SPLINE_GLOBE}
               title="Interactive 3D globe"
@@ -118,7 +118,7 @@ export default function Hero() {
       </div>
 
       {/* Search bar */}
-      <div id="hero-form" className="container-x relative z-10 -mt-16 sm:-mt-16">
+      <div id="hero-form" className="container-x relative z-10 -mt-10 sm:-mt-10">
         <form
           onSubmit={onSubmit}
           className="mx-auto grid w-full grid-cols-1 gap-2 rounded-[2rem] border border-black/5 bg-white p-4 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:gap-4 sm:rounded-[2.25rem] sm:p-4 sm:pl-8"
