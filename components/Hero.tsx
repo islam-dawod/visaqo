@@ -45,12 +45,13 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative overflow-hidden pb-28 pt-32 sm:pt-36">
-      {/* World map backdrop */}
+      {/* World map backdrop (matches Framer: cover, centered, 0.8 opacity) */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[720px] bg-contain bg-top bg-no-repeat opacity-[0.5]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[630px] bg-cover bg-center bg-no-repeat opacity-80"
         style={{ backgroundImage: `url(${asset("/assets/world-map.png")})` }}
       />
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-b from-white/40 via-white/70 to-white" />
+      {/* soft fade into the page at the bottom so content stays readable */}
+      <div className="pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-white" />
 
       {/* drifting clouds (like the original design) — overlap the globe so they read as clouds */}
       <img
@@ -103,8 +104,8 @@ export default function Hero() {
         {/* 3D Spline globe — large 3D sphere like the Framer design; a rectangular
             window shows the top ~45% (earth top hemisphere) with the lower part
             behind the search bar. */}
-        <div className="relative mx-auto mt-2 h-[280px] w-full overflow-hidden sm:h-[360px]">
-          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1180px] max-w-none -translate-x-1/2">
+        <div className="relative mx-auto mt-2 h-[240px] w-full overflow-hidden sm:h-[300px]">
+          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[900px] max-w-none -translate-x-1/2">
             <iframe
               src={SPLINE_GLOBE}
               title="Interactive 3D globe"
