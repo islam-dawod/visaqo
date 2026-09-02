@@ -37,6 +37,33 @@ export const DESTINATIONS = [
   "Qatar",
 ];
 
+// Per-country metadata used by the hero search:
+//  - code: ISO 3166-1 alpha-2 (for flag images)
+//  - x/y : position on /assets/world-map.png as a percentage (for route pins)
+export type CountryMeta = { code: string; x: number; y: number };
+
+export const COUNTRY_MAP: Record<string, CountryMeta> = {
+  Sudan: { code: "sd", x: 56, y: 62 },
+  Egypt: { code: "eg", x: 55, y: 55 },
+  "Saudi Arabia": { code: "sa", x: 60, y: 57 },
+  "United Arab Emirates": { code: "ae", x: 62, y: 57 },
+  Qatar: { code: "qa", x: 61, y: 56 },
+  Kuwait: { code: "kw", x: 60, y: 55 },
+  Jordan: { code: "jo", x: 57, y: 53 },
+  Morocco: { code: "ma", x: 45, y: 55 },
+  Nigeria: { code: "ng", x: 49, y: 65 },
+  Kenya: { code: "ke", x: 56, y: 69 },
+  India: { code: "in", x: 65, y: 56 },
+  Pakistan: { code: "pk", x: 63, y: 54 },
+  "United Kingdom": { code: "gb", x: 48, y: 44 },
+  "United States": { code: "us", x: 18, y: 46 },
+  "Schengen (Europe)": { code: "eu", x: 51, y: 46 },
+  Canada: { code: "ca", x: 20, y: 38 },
+  Turkey: { code: "tr", x: 56, y: 50 },
+  Malaysia: { code: "my", x: 75, y: 66 },
+  Australia: { code: "au", x: 82, y: 79 },
+};
+
 export const FEATURES = [
   {
     title: "Global Destinations",
