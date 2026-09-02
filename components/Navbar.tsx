@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { NAV_LINKS } from "@/lib/content";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -31,16 +33,21 @@ export default function Navbar() {
           </Link>
 
           <ul className="hidden items-center gap-[22px] md:flex">
-            {NAV_LINKS.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="text-[15px] font-medium text-ink transition-colors hover:text-brand-600"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+            {NAV_LINKS.map((l) => {
+              const active = l.href === pathname;
+              return (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className={`text-[15px] font-medium text-ink decoration-2 underline-offset-[6px] hover:underline ${
+                      active ? "underline" : "no-underline"
+                    }`}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           <button
