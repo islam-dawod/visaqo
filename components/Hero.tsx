@@ -100,10 +100,11 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* 3D Spline globe — full 3D sphere (no flat mask); a rectangular window
-            hides only the lower part behind the search bar, keeping the 3D look. */}
-        <div className="relative mx-auto mt-2 h-[290px] w-full overflow-hidden sm:h-[350px]">
-          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[760px] max-w-none -translate-x-1/2">
+        {/* 3D Spline globe — large 3D sphere like the Framer design; a rectangular
+            window shows the top ~45% (earth top hemisphere) with the lower part
+            behind the search bar. */}
+        <div className="relative mx-auto mt-2 h-[280px] w-full overflow-hidden sm:h-[360px]">
+          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1180px] max-w-none -translate-x-1/2">
             <iframe
               src={SPLINE_GLOBE}
               title="Interactive 3D globe"
@@ -116,10 +117,10 @@ export default function Hero() {
       </div>
 
       {/* Search bar */}
-      <div id="hero-form" className="container-x relative z-10 -mt-12 sm:-mt-16">
+      <div id="hero-form" className="container-x relative z-10 -mt-16 sm:-mt-16">
         <form
           onSubmit={onSubmit}
-          className="mx-auto grid max-w-4xl grid-cols-1 gap-2 rounded-[2rem] border border-black/5 bg-white p-3 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:rounded-pill sm:p-2.5 sm:pl-6"
+          className="mx-auto grid w-full grid-cols-1 gap-2 rounded-[2rem] border border-black/5 bg-white p-4 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:gap-4 sm:rounded-[2.25rem] sm:p-4 sm:pl-8"
         >
           <Field icon={<PassportIcon className="h-5 w-5 text-brand-600" />} label="My passport">
             <Select value={nationality} onChange={setNationality} placeholder="Nationality" options={NATIONALITIES} />
