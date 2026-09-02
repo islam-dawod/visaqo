@@ -121,8 +121,8 @@ body {
 .pin-pop { animation: pinPop 0.45s cubic-bezier(0.2, 0.9, 0.25, 1) both; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  /* Keep the section entrance animations (they match the Framer design);
+     only silence the continuous looping/decorative motion. */
   .floaty, .drift-l, .drift-r { animation: none; }
   .type-caret { animation: none; opacity: 1; }
-  html { scroll-behavior: auto; }
 }
