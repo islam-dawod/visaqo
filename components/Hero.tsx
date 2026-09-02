@@ -13,31 +13,13 @@ export default function Hero() {
   const [nationality, setNationality] = useState("");
   const [destination, setDestination] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
-  const [text, setText] = useState("");
-  const [deleting, setDeleting] = useState(false);
   const router = useRouter();
 
-  // Typewriter effect: type a word, pause, delete it, then move to the next.
+  // Cycle the rotating word; each new word animates its letters in (Framer style).
   useEffect(() => {
-    const current = WORDS[wordIndex];
-    let delay = deleting ? 55 : 110;
-    if (!deleting && text === current) delay = 1600;
-    else if (deleting && text === "") delay = 350;
-
-    const t = setTimeout(() => {
-      if (!deleting && text === current) {
-        setDeleting(true);
-      } else if (deleting && text === "") {
-        setDeleting(false);
-        setWordIndex((i) => (i + 1) % WORDS.length);
-      } else {
-        setText(
-          deleting ? current.slice(0, text.length - 1) : current.slice(0, text.length + 1)
-        );
-      }
-    }, delay);
-    return () => clearTimeout(t);
-  }, [text, deleting, wordIndex]);
+    const id = setInterval(() => setWordIndex((i) => (i + 1) % WORDS.length), 2400);
+    return () => clearInterval(id);
+  }, []);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,8 +71,17 @@ export default function Hero() {
               className="block"
               style={{ fontSize: "clamp(2.5rem, 6.2vw, 4.5rem)", lineHeight: 1.04 }}
             >
-              <span className="gradient-text">{text}</span>
-              <span className="type-caret" aria-hidden="true" />{" "}
+              <span key={wordIndex}>
+                {WORDS[wordIndex].split("").map((ch, i) => (
+                  <span
+                    key={i}
+                    className="word-letter"
+                    style={{ animationDelay: `${i * 45}ms` }}
+                  >
+                    {ch}
+                  </span>
+                ))}
+              </span>{" "}
               Take You?
             </span>
           </h1>
