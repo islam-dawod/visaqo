@@ -20,22 +20,22 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-4 z-50">
       <div className="container-x">
         <nav
-          className={`mx-auto flex max-w-2xl items-center justify-between gap-6 rounded-pill px-5 py-2.5 transition-all duration-300 ${
+          className={`mx-auto flex h-[63px] max-w-[640px] items-center justify-between gap-8 rounded-[50px] px-9 shadow-[0_2px_14px_-8px_rgba(0,0,0,0.18)] backdrop-blur-[40px] transition-colors duration-300 ${
             scrolled
-              ? "border border-black/5 bg-white/90 shadow-card backdrop-blur-md"
-              : "border border-white/50 bg-white/60 backdrop-blur-md"
+              ? "bg-[rgba(226,226,226,0.7)]"
+              : "bg-[rgba(222,222,222,0.4)]"
           }`}
         >
           <Link href="/" aria-label="VisaQo home" className="shrink-0">
             <Logo height={24} />
           </Link>
 
-          <ul className="hidden items-center gap-7 md:flex">
+          <ul className="hidden items-center gap-[22px] md:flex">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="text-sm font-medium text-ink-soft transition-colors hover:text-brand-600"
+                  className="text-[15px] font-medium text-ink transition-colors hover:text-brand-600"
                 >
                   {l.label}
                 </Link>
