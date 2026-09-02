@@ -12,11 +12,12 @@ export default function About() {
           {/* Person over blob */}
           <Reveal className="relative flex justify-center">
             <div className="relative w-full max-w-md">
+              {/* Soft pastel ellipse behind the person (Framer: O7nopP, 364x391, rotate 22deg) */}
               <img
                 src={asset("/assets/blob.png")}
                 alt=""
                 aria-hidden="true"
-                className="absolute left-1/2 top-1/2 -z-10 w-[112%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-90"
+                className="absolute left-1/2 top-[8%] -z-10 aspect-[364/391] w-[74%] -translate-x-1/2 rotate-[22deg] rounded-full opacity-95"
               />
               <img
                 src={asset("/assets/about-person.png")}
