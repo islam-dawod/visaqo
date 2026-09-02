@@ -104,8 +104,8 @@ export default function Hero() {
         {/* 3D Spline globe — large 3D sphere like the Framer design; a rectangular
             window shows the top ~45% (earth top hemisphere) with the lower part
             behind the search bar. */}
-        <div className="relative mx-auto mt-2 h-[210px] w-full overflow-hidden sm:h-[270px]">
-          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1080px] max-w-none -translate-x-1/2">
+        <div className="relative mx-auto mt-2 h-[250px] w-full overflow-hidden sm:h-[330px]">
+          <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1440px] max-w-none -translate-x-1/2">
             <iframe
               src={SPLINE_GLOBE}
               title="Interactive 3D globe"
