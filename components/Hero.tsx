@@ -39,14 +39,14 @@ export default function Hero() {
           Hidden once the route map takes over so the two maps never overlap. */}
       <div
         className={`pointer-events-none absolute inset-x-0 top-0 -z-20 h-[630px] bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
-          bothSelected ? "opacity-0" : "opacity-80"
+          firstSelected ? "opacity-0" : "opacity-80"
         }`}
         style={{ backgroundImage: `url(${asset("/assets/world-map.png")})` }}
       />
       {/* soft fade into the page at the bottom so content stays readable */}
       <div
         className={`pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-white transition-opacity duration-500 ${
-          bothSelected ? "opacity-0" : "opacity-100"
+          firstSelected ? "opacity-0" : "opacity-100"
         }`}
       />
 
@@ -56,7 +56,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-l pointer-events-none absolute left-[24%] top-[360px] z-[2] w-[200px] opacity-95 transition-opacity duration-500 sm:w-[280px] ${
-          bothSelected ? "!opacity-0" : ""
+          firstSelected ? "!opacity-0" : ""
         }`}
       />
       <img
@@ -64,7 +64,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-r pointer-events-none absolute right-[24%] top-[320px] z-[2] w-[210px] opacity-95 transition-opacity duration-500 sm:w-[300px] ${
-          bothSelected ? "!opacity-0" : ""
+          firstSelected ? "!opacity-0" : ""
         }`}
       />
       <img
@@ -72,7 +72,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-l pointer-events-none absolute left-1/2 top-[420px] z-[2] w-[340px] -translate-x-1/2 opacity-90 transition-opacity duration-500 sm:w-[440px] ${
-          bothSelected ? "!opacity-0" : ""
+          firstSelected ? "!opacity-0" : ""
         }`}
         style={{ animationDelay: "2s", animationDuration: "24s" }}
       />
@@ -81,10 +81,12 @@ export default function Hero() {
           so there is no seam at the top. Sits behind the heading and search bar. */}
       <div
         className={`absolute inset-0 z-0 transition-opacity duration-500 ${
-          bothSelected ? "opacity-100" : "pointer-events-none opacity-0"
+          firstSelected ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        {bothSelected && <RouteMap from={nationality} to={destination} />}
+        {firstSelected && (
+          <RouteMap key={bothSelected ? "both" : "one"} from={nationality} to={destination} />
+        )}
       </div>
 
       <div className="container-x relative z-10">
@@ -132,13 +134,13 @@ export default function Hero() {
             enough for the map. */}
         <div
           className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
-            bothSelected ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[345px]"
+            firstSelected ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[345px]"
           }`}
         >
           {/* 3D Spline globe — shifted left, shown as a rounded cap above the search bar.
               Fixed height so it doesn't grow while it fades out when the map takes over. */}
           <div
-            className={`absolute inset-x-0 top-0 h-[240px] transition-opacity duration-300 sm:h-[300px] lg:h-[345px] ${
+            className={`absolute inset-x-0 top-0 h-[240px] overflow-hidden transition-opacity duration-300 sm:h-[300px] lg:h-[345px] ${
               bothSelected ? "opacity-0" : "opacity-100"
             }`}
           >
