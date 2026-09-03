@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { asset, SPLINE_GLOBE } from "@/lib/asset";
 import { NATIONALITIES, DESTINATIONS, COUNTRY_MAP } from "@/lib/content";
@@ -75,7 +76,17 @@ export default function Hero() {
         style={{ animationDelay: "2s", animationDuration: "24s" }}
       />
 
-      <div className="container-x relative">
+      {/* Flat route map — covers the whole hero (edge to edge, up behind the navbar)
+          so there is no seam at the top. Sits behind the heading and search bar. */}
+      <div
+        className={`absolute inset-0 z-0 transition-opacity duration-500 ${
+          mapActive ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        {mapActive && <RouteMap from={nationality} to={destination} />}
+      </div>
+
+      <div className="container-x relative z-10">
         {/* Heading — collapses away once a route is selected (like the Framer design) */}
         <div
           className={`relative z-10 mx-auto max-w-4xl overflow-hidden text-center transition-all duration-500 ${
@@ -115,11 +126,11 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Media window: 3D globe by default, flat route map once a country is chosen.
-            The map layer is full-bleed (edge to edge) like the Framer design, and grows
-            taller so the map reads full — not as a thin cropped strip. */}
+        {/* Media window: the 3D globe. When a country is chosen it fades out while the
+            full-hero route map (above) takes over; the empty height keeps the hero tall
+            enough for the map. */}
         <div
-          className={`relative left-1/2 mt-2 w-screen -translate-x-1/2 overflow-hidden transition-[height] duration-500 ${
+          className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
             mapActive ? "h-[440px] sm:h-[600px]" : "h-[250px] sm:h-[330px]"
           }`}
         >
@@ -138,15 +149,6 @@ export default function Hero() {
                 loading="lazy"
               />
             </div>
-          </div>
-
-          {/* Flat world map with the From / To pins (shown progressively) */}
-          <div
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              mapActive ? "opacity-100" : "pointer-events-none opacity-0"
-            }`}
-          >
-            {mapActive && <RouteMap from={nationality} to={destination} />}
           </div>
         </div>
       </div>
@@ -201,21 +203,54 @@ function CountrySelect({
   options: string[];
 }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState<{
+    top?: number;
+    bottom?: number;
+    left: number;
+    width: number;
+  } | null>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const meta = value ? COUNTRY_MAP[value] : null;
 
+  // Position the menu in a portal on <body> so it is never clipped by the hero's
+  // overflow-hidden or covered by the neighbouring field / next section. Flips above
+  // the field when there isn't enough room below (the search bar sits low on screen).
   useEffect(() => {
+    if (!open) return;
+    const place = () => {
+      const el = triggerRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const menuMax = 300;
+      const spaceBelow = window.innerHeight - r.bottom;
+      if (spaceBelow < menuMax && r.top > spaceBelow) {
+        setPos({ bottom: window.innerHeight - r.top + 8, left: r.left, width: r.width });
+      } else {
+        setPos({ top: r.bottom + 8, left: r.left, width: r.width });
+      }
+    };
+    place();
     const onDoc = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      const t = e.target as Node;
+      if (triggerRef.current?.contains(t) || menuRef.current?.contains(t)) return;
+      setOpen(false);
     };
     document.addEventListener("mousedown", onDoc);
-    return () => document.removeEventListener("mousedown", onDoc);
-  }, []);
+    window.addEventListener("scroll", place, true);
+    window.addEventListener("resize", place);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      window.removeEventListener("scroll", place, true);
+      window.removeEventListener("resize", place);
+    };
+  }, [open]);
 
   return (
-    <div ref={ref} className="relative">
+    <div className="relative">
       <span className="mb-2.5 block text-[15px] font-bold text-ink">{label}</span>
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen((o) => !o)}
         className="flex h-[54px] w-full items-center gap-2.5 rounded-2xl border border-black/10 bg-white px-4 text-left transition-colors hover:border-black/20"
@@ -231,29 +266,42 @@ function CountrySelect({
         />
       </button>
 
-      {open && (
-        <div className="absolute left-0 right-0 top-full z-40 mt-2 max-h-64 overflow-auto rounded-2xl border border-black/5 bg-white p-1.5 shadow-xl">
-          {options.map((o) => {
-            const m = COUNTRY_MAP[o];
-            return (
-              <button
-                key={o}
-                type="button"
-                onClick={() => {
-                  onChange(o);
-                  setOpen(false);
-                }}
-                className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-50 ${
-                  o === value ? "bg-brand-50 font-medium" : ""
-                }`}
-              >
-                {m && <FlagImg code={m.code} />}
-                <span className="truncate text-ink-soft">{o}</span>
-              </button>
-            );
-          })}
-        </div>
-      )}
+      {open && pos && typeof document !== "undefined" &&
+        createPortal(
+          <div
+            ref={menuRef}
+            style={{
+              position: "fixed",
+              top: pos.top,
+              bottom: pos.bottom,
+              left: pos.left,
+              width: pos.width,
+              zIndex: 1000,
+            }}
+            className="max-h-72 overflow-auto rounded-2xl border border-black/5 bg-white p-1.5 shadow-xl"
+          >
+            {options.map((o) => {
+              const m = COUNTRY_MAP[o];
+              return (
+                <button
+                  key={o}
+                  type="button"
+                  onClick={() => {
+                    onChange(o);
+                    setOpen(false);
+                  }}
+                  className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-50 ${
+                    o === value ? "bg-brand-50 font-medium" : ""
+                  }`}
+                >
+                  {m && <FlagImg code={m.code} />}
+                  <span className="truncate text-ink-soft">{o}</span>
+                </button>
+              );
+            })}
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
