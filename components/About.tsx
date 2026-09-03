@@ -12,15 +12,10 @@ export default function About() {
           {/* Person over blob */}
           <Reveal className="relative flex justify-center">
             <div className="relative w-full max-w-md">
-              {/* Soft lilac circle behind the person (always visible) */}
-              <div
-                aria-hidden="true"
-                className="absolute left-1/2 top-[0%] -z-10 aspect-square w-[100%] -translate-x-1/2 rounded-full bg-[#AE9BF3] opacity-60 blur-[10px]"
-              />
               <img
                 src={asset("/assets/about-person.png")}
                 alt="A VisaQo travel specialist"
-                className="relative mx-auto w-full max-w-[380px] drop-shadow-xl"
+                className="relative mx-auto w-full max-w-[420px]"
               />
             </div>
           </Reveal>
