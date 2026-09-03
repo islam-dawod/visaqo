@@ -154,13 +154,13 @@ export const VISA_SERVICES = [
   "Work Visas",
   "Religious Visas",
   "Express Visas",
+  "Express Processing",
 ];
 
 export const QUICK_LINKS = [
   { label: "About Us", href: "/about-us" },
   { label: "How It Works", href: "/process" },
   { label: "Discounts", href: "/#discounts" },
-  { label: "FAQ", href: "/#" },
   { label: "Testimonials", href: "/#testimonials" },
   { label: "Privacy Policy", href: "/#" },
 ];
