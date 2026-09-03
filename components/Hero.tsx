@@ -89,7 +89,7 @@ export default function Hero() {
       <div className="container-x relative z-10">
         {/* Heading — collapses away once a route is selected (like the Framer design) */}
         <div
-          className={`relative z-10 mx-auto max-w-4xl overflow-hidden text-center transition-all duration-500 ${
+          className={`relative z-10 mx-auto max-w-[900px] overflow-hidden text-center transition-all duration-500 lg:ml-[3%] lg:mr-auto ${
             mapActive ? "max-h-0 opacity-0" : "max-h-[260px] opacity-100"
           }`}
         >
@@ -131,16 +131,16 @@ export default function Hero() {
             enough for the map. */}
         <div
           className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
-            mapActive ? "h-[440px] sm:h-[600px]" : "h-[250px] sm:h-[330px]"
+            mapActive ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[380px]"
           }`}
         >
-          {/* 3D Spline globe */}
+          {/* 3D Spline globe — smaller sphere, more of it visible, shifted left */}
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${
               mapActive ? "opacity-0" : "opacity-100"
             }`}
           >
-            <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1440px] max-w-none -translate-x-1/2">
+            <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1400px] max-w-none -translate-x-1/2 sm:w-[1000px] lg:left-[36%] lg:w-[880px]">
               <iframe
                 src={SPLINE_GLOBE}
                 title="Interactive 3D globe"
