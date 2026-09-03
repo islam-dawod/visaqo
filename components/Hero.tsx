@@ -131,7 +131,7 @@ export default function Hero() {
             enough for the map. */}
         <div
           className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
-            mapActive ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[380px]"
+            mapActive ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[420px]"
           }`}
         >
           {/* 3D Spline globe — smaller sphere, more of it visible, shifted left */}
@@ -140,7 +140,9 @@ export default function Hero() {
               mapActive ? "opacity-0" : "opacity-100"
             }`}
           >
-            <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1400px] max-w-none -translate-x-1/2 sm:w-[1000px] lg:left-[36%] lg:w-[880px]">
+            {/* Mobile/tablet: a big wide frame shows a rounded top cap (fits the narrow screen).
+                Desktop: a square frame shows the whole rounded earth, smaller and shifted left. */}
+            <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1400px] max-w-none -translate-x-1/2 sm:w-[1000px] lg:left-[32%] lg:aspect-square lg:w-[700px]">
               <iframe
                 src={SPLINE_GLOBE}
                 title="Interactive 3D globe"
