@@ -92,8 +92,8 @@ export default function Hero() {
       <div className="container-x relative z-10">
         {/* Heading — collapses away once a route is selected (like the Framer design) */}
         <div
-          className={`relative z-10 mx-auto max-w-[900px] overflow-hidden text-center transition-all duration-500 lg:ml-[3%] lg:mr-auto ${
-            firstSelected ? "max-h-0 opacity-0" : "max-h-[260px] opacity-100"
+          className={`relative z-10 mx-auto max-h-[260px] max-w-[900px] overflow-hidden text-center transition-opacity duration-500 lg:ml-[3%] lg:mr-auto ${
+            firstSelected ? "pointer-events-none opacity-0" : "opacity-100"
           }`}
         >
           <h1 className="font-semibold text-ink" style={{ letterSpacing: "-0.03em" }}>
@@ -132,11 +132,7 @@ export default function Hero() {
         {/* Media window: the 3D globe. When a country is chosen it fades out while the
             full-hero route map (above) takes over; the empty height keeps the hero tall
             enough for the map. */}
-        <div
-          className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
-            firstSelected ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[345px]"
-          }`}
-        >
+        <div className="relative mx-auto mt-2 h-[240px] w-full overflow-hidden sm:h-[300px] lg:h-[345px]">
           {/* 3D Spline globe — shifted left, shown as a rounded cap above the search bar.
               Fixed height so it doesn't grow while it fades out when the map takes over. */}
           <div
