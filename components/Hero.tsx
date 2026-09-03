@@ -141,7 +141,7 @@ export default function Hero() {
             }`}
           >
             {/* Position anchor (top-centre; nudged left + down on desktop) */}
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 lg:left-[34%] lg:-top-[120px]">
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 lg:left-[34%] lg:-top-[28px]">
               {/* Spline draws the earth at a fixed size, so the frame must stay large (a small
                   frame clips the globe into a rectangle). We keep a big square frame and shrink
                   it visually with a CSS scale so the sphere stays perfectly round. */}
