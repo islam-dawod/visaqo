@@ -16,7 +16,9 @@ export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
   const router = useRouter();
 
-  const routeActive = Boolean(nationality && destination);
+  // The map view appears as soon as EITHER country is chosen; the first pin shows
+  // immediately, the second appears once the other country is selected.
+  const mapActive = Boolean(nationality || destination);
 
   // Cycle the rotating word; each new word animates its letters in (Framer style).
   useEffect(() => {
@@ -31,13 +33,20 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative overflow-hidden pb-28 pt-32 sm:pt-36">
-      {/* World map backdrop (matches Framer: cover, centered, 0.8 opacity) */}
+      {/* World map backdrop (matches Framer: cover, centered, 0.8 opacity).
+          Hidden once the route map takes over so the two maps never overlap. */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[630px] bg-cover bg-center bg-no-repeat opacity-80"
+        className={`pointer-events-none absolute inset-x-0 top-0 -z-20 h-[630px] bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
+          mapActive ? "opacity-0" : "opacity-80"
+        }`}
         style={{ backgroundImage: `url(${asset("/assets/world-map.png")})` }}
       />
       {/* soft fade into the page at the bottom so content stays readable */}
-      <div className="pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-white" />
+      <div
+        className={`pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-white transition-opacity duration-500 ${
+          mapActive ? "opacity-0" : "opacity-100"
+        }`}
+      />
 
       {/* drifting clouds (like the original design) — overlap the globe so they read as clouds */}
       <img
@@ -45,7 +54,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-l pointer-events-none absolute left-[24%] top-[360px] z-[2] w-[200px] opacity-95 transition-opacity duration-500 sm:w-[280px] ${
-          routeActive ? "opacity-0" : ""
+          mapActive ? "!opacity-0" : ""
         }`}
       />
       <img
@@ -53,7 +62,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-r pointer-events-none absolute right-[24%] top-[320px] z-[2] w-[210px] opacity-95 transition-opacity duration-500 sm:w-[300px] ${
-          routeActive ? "opacity-0" : ""
+          mapActive ? "!opacity-0" : ""
         }`}
       />
       <img
@@ -61,7 +70,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-l pointer-events-none absolute left-1/2 top-[420px] z-[2] w-[340px] -translate-x-1/2 opacity-90 transition-opacity duration-500 sm:w-[440px] ${
-          routeActive ? "opacity-0" : ""
+          mapActive ? "!opacity-0" : ""
         }`}
         style={{ animationDelay: "2s", animationDuration: "24s" }}
       />
@@ -70,7 +79,7 @@ export default function Hero() {
         {/* Heading — collapses away once a route is selected (like the Framer design) */}
         <div
           className={`relative z-10 mx-auto max-w-4xl overflow-hidden text-center transition-all duration-500 ${
-            routeActive ? "max-h-0 opacity-0" : "max-h-[260px] opacity-100"
+            mapActive ? "max-h-0 opacity-0" : "max-h-[260px] opacity-100"
           }`}
         >
           <h1 className="font-semibold text-ink" style={{ letterSpacing: "-0.03em" }}>
@@ -106,18 +115,18 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Media window: 3D globe by default, flat route map once both countries are chosen.
-            Grows to ~600px for the map (matching the Framer design) so the map reads full,
-            not as a thin cropped strip. */}
+        {/* Media window: 3D globe by default, flat route map once a country is chosen.
+            The map layer is full-bleed (edge to edge) like the Framer design, and grows
+            taller so the map reads full — not as a thin cropped strip. */}
         <div
-          className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
-            routeActive ? "h-[440px] sm:h-[600px]" : "h-[250px] sm:h-[330px]"
+          className={`relative left-1/2 mt-2 w-screen -translate-x-1/2 overflow-hidden transition-[height] duration-500 ${
+            mapActive ? "h-[440px] sm:h-[600px]" : "h-[250px] sm:h-[330px]"
           }`}
         >
           {/* 3D Spline globe */}
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${
-              routeActive ? "opacity-0" : "opacity-100"
+              mapActive ? "opacity-0" : "opacity-100"
             }`}
           >
             <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1440px] max-w-none -translate-x-1/2">
@@ -131,13 +140,13 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Flat world map with the From → To route */}
+          {/* Flat world map with the From / To pins (shown progressively) */}
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${
-              routeActive ? "opacity-100" : "pointer-events-none opacity-0"
+              mapActive ? "opacity-100" : "pointer-events-none opacity-0"
             }`}
           >
-            {routeActive && <RouteMap from={nationality} to={destination} />}
+            {mapActive && <RouteMap from={nationality} to={destination} />}
           </div>
         </div>
       </div>
@@ -249,11 +258,10 @@ function CountrySelect({
   );
 }
 
-/* ---------- Flat world map with animated From → To pins ---------- */
+/* ---------- Flat world map with progressive From / To pins ---------- */
 function RouteMap({ from, to }: { from: string; to: string }) {
-  const a = COUNTRY_MAP[from];
-  const b = COUNTRY_MAP[to];
-  if (!a || !b) return null;
+  const a = from ? COUNTRY_MAP[from] : null;
+  const b = to ? COUNTRY_MAP[to] : null;
 
   return (
     <div className="relative h-full w-full overflow-hidden">
@@ -268,26 +276,28 @@ function RouteMap({ from, to }: { from: string; to: string }) {
             draggable={false}
           />
 
-          {/* connecting route line */}
-          <svg
-            className="pointer-events-none absolute inset-0 h-full w-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            <line
-              x1={a.x}
-              y1={a.y}
-              x2={b.x}
-              y2={b.y}
-              stroke="#9aa3af"
-              strokeWidth="0.22"
-              strokeDasharray="0.7 0.9"
-              strokeLinecap="round"
-            />
-          </svg>
+          {/* connecting route line — only once both ends exist */}
+          {a && b && (
+            <svg
+              className="pointer-events-none absolute inset-0 h-full w-full"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <line
+                x1={a.x}
+                y1={a.y}
+                x2={b.x}
+                y2={b.y}
+                stroke="#9aa3af"
+                strokeWidth="0.22"
+                strokeDasharray="0.7 0.9"
+                strokeLinecap="round"
+              />
+            </svg>
+          )}
 
-          <Pin x={a.x} y={a.y} color="#e23b3b" label={`From: ${from}`} />
-          <Pin x={b.x} y={b.y} color="#1c1c1c" label={`To: ${to}`} />
+          {a && <Pin x={a.x} y={a.y} color="#e23b3b" label={`From: ${from}`} />}
+          {b && <Pin x={b.x} y={b.y} color="#1c1c1c" label={`To: ${to}`} />}
         </div>
       </div>
     </div>
