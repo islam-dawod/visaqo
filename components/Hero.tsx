@@ -145,7 +145,7 @@ export default function Hero() {
               {/* Spline draws the earth at a fixed size, so the frame must stay large (a small
                   frame clips the globe into a rectangle). We keep a big square frame and shrink
                   it visually with a CSS scale so the sphere stays perfectly round. */}
-              <div className="relative aspect-square w-[900px] max-w-none origin-top scale-[0.46] sm:scale-[0.62] lg:scale-[0.7]">
+              <div className="relative aspect-square w-[900px] max-w-none origin-top scale-[0.5] sm:scale-[0.68] lg:scale-[0.77]">
                 <iframe
                   src={SPLINE_GLOBE}
                   title="Interactive 3D globe"
