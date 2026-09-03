@@ -106,8 +106,14 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Media window: 3D globe by default, flat route map once both countries are chosen */}
-        <div className="relative mx-auto mt-2 h-[250px] w-full overflow-hidden sm:h-[330px]">
+        {/* Media window: 3D globe by default, flat route map once both countries are chosen.
+            Grows to ~600px for the map (matching the Framer design) so the map reads full,
+            not as a thin cropped strip. */}
+        <div
+          className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
+            routeActive ? "h-[440px] sm:h-[600px]" : "h-[250px] sm:h-[330px]"
+          }`}
+        >
           {/* 3D Spline globe */}
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${
@@ -140,7 +146,7 @@ export default function Hero() {
       <div id="hero-form" className="container-x relative z-10 -mt-10 sm:-mt-10">
         <form
           onSubmit={onSubmit}
-          className="mx-auto grid w-full grid-cols-1 gap-2 rounded-[2rem] border border-black/5 bg-white p-5 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:gap-6 sm:rounded-[2.25rem] sm:p-6 sm:px-8"
+          className="mx-auto grid w-full grid-cols-1 gap-5 rounded-[2rem] border border-black/5 bg-white p-6 shadow-bar sm:grid-cols-[1fr_1fr_auto] sm:items-end sm:gap-6 sm:rounded-[2.25rem] sm:p-7 sm:px-8"
         >
           <CountrySelect
             label="My passport"
@@ -156,10 +162,12 @@ export default function Hero() {
             value={destination}
             onChange={setDestination}
             options={DESTINATIONS}
-            divider
           />
 
-          <button type="submit" className="btn-primary w-full !rounded-[53px] !px-8 !text-[17px] !font-bold sm:w-auto">
+          <button
+            type="submit"
+            className="btn-primary h-[54px] w-full !rounded-[53px] !px-8 !text-[17px] !font-bold sm:w-auto"
+          >
             Get Start My Application
             <ArrowIcon className="h-4 w-4" />
           </button>
@@ -176,14 +184,12 @@ function CountrySelect({
   value,
   onChange,
   options,
-  divider,
 }: {
   label: string;
   placeholder: string;
   value: string;
   onChange: (v: string) => void;
   options: string[];
-  divider?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -198,15 +204,12 @@ function CountrySelect({
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className={`relative px-1 ${divider ? "sm:border-l sm:border-black/10 sm:pl-7" : ""}`}
-    >
-      <span className="block text-[15px] font-bold text-ink">{label}</span>
+    <div ref={ref} className="relative">
+      <span className="mb-2.5 block text-[15px] font-bold text-ink">{label}</span>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="mt-2 flex w-full items-center gap-2.5 text-left"
+        className="flex h-[54px] w-full items-center gap-2.5 rounded-2xl border border-black/10 bg-white px-4 text-left transition-colors hover:border-black/20"
       >
         {meta && <FlagImg code={meta.code} />}
         <span className={`truncate text-base ${value ? "text-ink" : "text-[#8b8b8b]"}`}>
@@ -220,7 +223,7 @@ function CountrySelect({
       </button>
 
       {open && (
-        <div className="absolute left-1 right-1 top-full z-40 mt-3 max-h-64 overflow-auto rounded-2xl border border-black/5 bg-white p-1.5 shadow-xl">
+        <div className="absolute left-0 right-0 top-full z-40 mt-2 max-h-64 overflow-auto rounded-2xl border border-black/5 bg-white p-1.5 shadow-xl">
           {options.map((o) => {
             const m = COUNTRY_MAP[o];
             return (
@@ -254,8 +257,9 @@ function RouteMap({ from, to }: { from: string; to: string }) {
 
   return (
     <div className="relative h-full w-full overflow-hidden">
-      {/* Full-ratio map, vertically centred on the inhabited band */}
-      <div className="absolute inset-x-0" style={{ top: "50%", transform: "translateY(-56%)" }}>
+      {/* Full-ratio map, centre-cropped exactly like the Framer design
+          (background-size: cover; background-position: 50% 50%). */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2">
         <div className="relative w-full">
           <img
             src={asset("/assets/world-map.png")}

@@ -38,7 +38,7 @@ export default {
         bar: "0 30px 60px -24px rgba(20, 19, 38, 0.18)",
       },
       maxWidth: {
-        container: "1200px",
+        container: "1480px",
       },
     },
   },
