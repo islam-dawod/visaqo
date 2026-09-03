@@ -17,9 +17,10 @@ export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
   const router = useRouter();
 
-  // The map view appears as soon as EITHER country is chosen; the first pin shows
-  // immediately, the second appears once the other country is selected.
-  const mapActive = Boolean(nationality || destination);
+  // Selecting the first country hides the heading (but keeps the globe).
+  // Selecting the second country hides the globe and reveals the route map.
+  const firstSelected = Boolean(nationality || destination);
+  const bothSelected = Boolean(nationality && destination);
 
   // Cycle the rotating word; each new word animates its letters in (Framer style).
   useEffect(() => {
@@ -38,14 +39,14 @@ export default function Hero() {
           Hidden once the route map takes over so the two maps never overlap. */}
       <div
         className={`pointer-events-none absolute inset-x-0 top-0 -z-20 h-[630px] bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
-          mapActive ? "opacity-0" : "opacity-80"
+          bothSelected ? "opacity-0" : "opacity-80"
         }`}
         style={{ backgroundImage: `url(${asset("/assets/world-map.png")})` }}
       />
       {/* soft fade into the page at the bottom so content stays readable */}
       <div
         className={`pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-white transition-opacity duration-500 ${
-          mapActive ? "opacity-0" : "opacity-100"
+          bothSelected ? "opacity-0" : "opacity-100"
         }`}
       />
 
@@ -55,7 +56,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-l pointer-events-none absolute left-[24%] top-[360px] z-[2] w-[200px] opacity-95 transition-opacity duration-500 sm:w-[280px] ${
-          mapActive ? "!opacity-0" : ""
+          bothSelected ? "!opacity-0" : ""
         }`}
       />
       <img
@@ -63,7 +64,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-r pointer-events-none absolute right-[24%] top-[320px] z-[2] w-[210px] opacity-95 transition-opacity duration-500 sm:w-[300px] ${
-          mapActive ? "!opacity-0" : ""
+          bothSelected ? "!opacity-0" : ""
         }`}
       />
       <img
@@ -71,7 +72,7 @@ export default function Hero() {
         alt=""
         aria-hidden="true"
         className={`drift-l pointer-events-none absolute left-1/2 top-[420px] z-[2] w-[340px] -translate-x-1/2 opacity-90 transition-opacity duration-500 sm:w-[440px] ${
-          mapActive ? "!opacity-0" : ""
+          bothSelected ? "!opacity-0" : ""
         }`}
         style={{ animationDelay: "2s", animationDuration: "24s" }}
       />
@@ -80,17 +81,17 @@ export default function Hero() {
           so there is no seam at the top. Sits behind the heading and search bar. */}
       <div
         className={`absolute inset-0 z-0 transition-opacity duration-500 ${
-          mapActive ? "opacity-100" : "pointer-events-none opacity-0"
+          bothSelected ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        {mapActive && <RouteMap from={nationality} to={destination} />}
+        {bothSelected && <RouteMap from={nationality} to={destination} />}
       </div>
 
       <div className="container-x relative z-10">
         {/* Heading — collapses away once a route is selected (like the Framer design) */}
         <div
           className={`relative z-10 mx-auto max-w-[900px] overflow-hidden text-center transition-all duration-500 lg:ml-[3%] lg:mr-auto ${
-            mapActive ? "max-h-0 opacity-0" : "max-h-[260px] opacity-100"
+            firstSelected ? "max-h-0 opacity-0" : "max-h-[260px] opacity-100"
           }`}
         >
           <h1 className="font-semibold text-ink" style={{ letterSpacing: "-0.03em" }}>
@@ -131,13 +132,14 @@ export default function Hero() {
             enough for the map. */}
         <div
           className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
-            mapActive ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[345px]"
+            bothSelected ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[345px]"
           }`}
         >
-          {/* 3D Spline globe — shifted left, shown as a rounded cap above the search bar */}
+          {/* 3D Spline globe — shifted left, shown as a rounded cap above the search bar.
+              Fixed height so it doesn't grow while it fades out when the map takes over. */}
           <div
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              mapActive ? "opacity-0" : "opacity-100"
+            className={`absolute inset-x-0 top-0 h-[240px] transition-opacity duration-300 sm:h-[300px] lg:h-[345px] ${
+              bothSelected ? "opacity-0" : "opacity-100"
             }`}
           >
             {/* Position anchor (top-centre; nudged left + down on desktop) */}
@@ -318,7 +320,7 @@ function RouteMap({ from, to }: { from: string; to: string }) {
   const b = to ? COUNTRY_MAP[to] : null;
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="map-reveal relative h-full w-full overflow-hidden">
       {/* Full-ratio map, centre-cropped exactly like the Framer design
           (background-size: cover; background-position: 50% 50%). */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2">

@@ -112,6 +112,16 @@ body {
 /* preserve the space between the word and "Take You?" */
 .word-letter:empty::after { content: "\00a0"; }
 
+/* route map reveal — a subtle "laid down" skew/flatten that settles flat */
+@keyframes mapReveal {
+  0% { opacity: 0; transform: perspective(1600px) skewX(-4deg) scaleY(0.8) translateY(10px); }
+  100% { opacity: 1; transform: perspective(1600px) skewX(0deg) scaleY(1) translateY(0); }
+}
+.map-reveal {
+  animation: mapReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: 50% 100%;
+}
+
 /* hero route pins drop in */
 @keyframes pinPop {
   0% { opacity: 0; transform: translate(-50%, -100%) translateY(-10px) scale(0.6); }
