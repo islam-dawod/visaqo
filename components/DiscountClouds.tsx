@@ -47,18 +47,42 @@ export default function DiscountClouds() {
     cloudsRef.current[i] = el;
   };
 
+  // A dense band: many overlapping clouds spread across the width. When the
+  // section is centred they converge into a thick white layer; scrolling away
+  // slides them back out to the sides.
+  const clouds = [
+    // low, big, opaque band
+    { pos: "-bottom-16 left-[-8%] w-[440px] sm:w-[600px]", op: "opacity-100", dir: -1, depth: 150 },
+    { pos: "-bottom-14 left-[16%] w-[420px] sm:w-[560px]", op: "opacity-95", dir: -1, depth: 150 },
+    { pos: "-bottom-16 left-[40%] w-[440px] sm:w-[600px]", op: "opacity-100", dir: 1, depth: 150 },
+    { pos: "-bottom-14 right-[-8%] w-[440px] sm:w-[600px]", op: "opacity-95", dir: 1, depth: 150 },
+    // middle layer
+    { pos: "bottom-10 left-[4%] w-[320px] sm:w-[460px]", op: "opacity-90", dir: -1, depth: 175 },
+    { pos: "bottom-16 left-[28%] w-[340px] sm:w-[480px]", op: "opacity-80", dir: -1, depth: 175 },
+    { pos: "bottom-10 right-[4%] w-[320px] sm:w-[460px]", op: "opacity-90", dir: 1, depth: 175 },
+    { pos: "bottom-16 right-[26%] w-[320px] sm:w-[460px]", op: "opacity-80", dir: 1, depth: 175 },
+    // top wisps
+    { pos: "bottom-28 left-[14%] w-[260px] sm:w-[380px]", op: "opacity-70", dir: -1, depth: 210 },
+    { pos: "bottom-32 right-[16%] w-[260px] sm:w-[380px]", op: "opacity-70", dir: 1, depth: 210 },
+  ];
+
   return (
     <div
       ref={wrapRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 bottom-0 top-1/3 overflow-hidden"
+      className="pointer-events-none absolute inset-x-0 bottom-0 top-1/4 overflow-hidden"
     >
-      {/* big low clouds */}
-      <img ref={set(0)} data-dir="-1" data-depth="150" src={cloud} alt="" className={`${base} -bottom-16 -left-10 w-[460px] opacity-95 sm:w-[640px]`} />
-      <img ref={set(1)} data-dir="1" data-depth="150" src={cloud} alt="" className={`${base} -bottom-12 -right-10 w-[480px] opacity-95 sm:w-[660px]`} />
-      {/* higher, lighter clouds travel a little further */}
-      <img ref={set(2)} data-dir="-1" data-depth="190" src={cloud} alt="" className={`${base} bottom-24 left-[8%] w-[300px] opacity-70 sm:w-[420px]`} />
-      <img ref={set(3)} data-dir="1" data-depth="190" src={cloud} alt="" className={`${base} bottom-32 right-[10%] w-[320px] opacity-70 sm:w-[440px]`} />
+      {clouds.map((c, i) => (
+        <img
+          key={i}
+          ref={set(i)}
+          data-dir={c.dir}
+          data-depth={c.depth}
+          src={cloud}
+          alt=""
+          className={`${base} ${c.pos} ${c.op}`}
+        />
+      ))}
     </div>
   );
 }

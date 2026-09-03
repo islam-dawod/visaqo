@@ -26,33 +26,53 @@ export default function Discounts() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {DISCOUNTS.map((d, i) => (
-            <Reveal key={d.percent} delay={i * 100}>
-              <article className="group relative h-[380px] overflow-hidden rounded-[44px] shadow-card sm:h-[420px]">
-                <img
-                  src={asset(d.image)}
-                  alt={`${d.title} discount`}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-black/10" />
+        <Reveal className="mt-14 flex flex-col gap-6 md:flex-row">
+          {DISCOUNTS.map((d) => (
+            <article
+              key={d.percent}
+              className="group relative h-[300px] overflow-hidden rounded-[36px] shadow-card transition-[flex-grow] duration-500 ease-out sm:h-[420px] md:flex-1 md:hover:flex-[2.6]"
+            >
+              <img
+                src={asset(d.image)}
+                alt={`${d.title} discount`}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/20" />
 
-                <div className="absolute inset-x-6 top-6 flex items-center justify-between">
-                  <span className="rounded-pill bg-brand/85 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur">
-                    {d.percent} Off
-                  </span>
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-600 text-white shadow-soft transition-transform group-hover:rotate-[-45deg]">
-                    <ArrowIcon className="h-4 w-4" />
-                  </span>
-                </div>
+              <div className="absolute inset-x-6 top-6 flex items-center justify-between">
+                <span className="rounded-pill bg-brand/85 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur">
+                  {d.percent} Off
+                </span>
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-600 text-white shadow-soft">
+                  <ArrowIcon className="h-4 w-4" />
+                </span>
+              </div>
 
-                <p className="absolute inset-x-7 bottom-7 max-w-[15rem] text-2xl font-semibold leading-snug text-white">
+              {/* Title + (on hover) description & Book Now */}
+              <div className="absolute inset-x-7 bottom-7">
+                <h3 className="text-2xl font-semibold leading-snug text-white">
                   Get {d.percent} Discounts for {d.title}
-                </p>
-              </article>
-            </Reveal>
+                </h3>
+                <div className="grid grid-rows-[0fr] transition-all duration-500 ease-out group-hover:grid-rows-[1fr]">
+                  <div className="overflow-hidden">
+                    <div className="mt-3 flex items-end justify-between gap-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                      <p className="max-w-md text-sm leading-relaxed text-white/90">
+                        {d.desc}
+                      </p>
+                      <Link
+                        href="/form"
+                        className="btn-primary shrink-0 !px-6 !py-3 !text-sm"
+                      >
+                        Book Now
+                        <ArrowIcon className="h-4 w-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
           ))}
-        </div>
+        </Reveal>
 
         {/* CTA — text over the clouds */}
         <Reveal>

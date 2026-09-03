@@ -139,11 +139,13 @@ export const DISCOUNTS = [
     percent: "24%",
     title: "Group Traveler",
     image: "/assets/discount-group.png",
+    desc: "Enjoy a 24% discount on exclusive travel packages for our valued group travelers. Whether you want early bird specials or last-minute adventures, we have the perfect deal for you!",
   },
   {
     percent: "30%",
     title: "Previous Traveler",
     image: "/assets/discount-previous.png",
+    desc: "Enjoy a 30% discount on exclusive travel packages for our returning travelers. Whether you want early bird specials or last-minute adventures, we have the perfect deal for you!",
   },
 ];
 
