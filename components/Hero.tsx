@@ -131,7 +131,7 @@ export default function Hero() {
             enough for the map. */}
         <div
           className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
-            mapActive ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[270px]"
+            mapActive ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[345px]"
           }`}
         >
           {/* 3D Spline globe — shifted left, shown as a rounded cap above the search bar */}
@@ -141,7 +141,7 @@ export default function Hero() {
             }`}
           >
             {/* Position anchor (top-centre; nudged left + down on desktop) */}
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 lg:left-[34%] lg:top-[18px]">
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 lg:left-[34%] lg:-top-[120px]">
               {/* Spline draws the earth at a fixed size, so the frame must stay large (a small
                   frame clips the globe into a rectangle). We keep a big square frame and shrink
                   it visually with a CSS scale so the sphere stays perfectly round. */}
