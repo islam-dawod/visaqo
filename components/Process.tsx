@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
+import ScrollFade from "./ScrollFade";
 import { PROCESS_STEPS } from "@/lib/content";
 import { ArrowIcon } from "./Icons";
 
@@ -12,7 +13,7 @@ export default function Process() {
       id="process"
       className="scroll-mt-24 overflow-hidden bg-gradient-to-b from-white via-mist-lav to-white py-20 sm:py-28"
     >
-      <div className="container-x">
+      <ScrollFade className="container-x">
         <div className="grid items-center gap-14 lg:grid-cols-2">
           {/* Left copy */}
           <Reveal>
@@ -26,7 +27,7 @@ export default function Process() {
               We simplify the visa application process so you can focus on planning
               your trip — not paperwork.
             </p>
-            <Link href="/form" className="btn-primary mt-8">
+            <Link href="/form" className="btn-primary mt-8 !px-8 !py-4 !text-base">
               Start Your Application
               <ArrowIcon className="h-4 w-4" />
             </Link>
@@ -120,7 +121,7 @@ export default function Process() {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollFade>
     </section>
   );
 }

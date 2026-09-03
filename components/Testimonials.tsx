@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Reveal from "./Reveal";
+import ScrollFade from "./ScrollFade";
 import { asset } from "@/lib/asset";
 import { TESTIMONIALS } from "@/lib/content";
 
@@ -39,9 +40,22 @@ export default function Testimonials() {
   const count = TESTIMONIALS.length;
   const go = (dir: number) => setActive((a) => (a + dir + count) % count);
 
+  // Auto-advance the carousel (pauses on hover of the section).
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % count), 5000);
+    return () => clearInterval(id);
+  }, [paused, count]);
+
   return (
-    <section id="testimonials" className="scroll-mt-24 py-20 sm:py-28">
-      <div className="container-x">
+    <section
+      id="testimonials"
+      className="scroll-mt-24 py-20 sm:py-28"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <ScrollFade className="container-x">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">Testimonials</span>
           <h2 className="mt-5 section-title">What Our Customer</h2>
@@ -109,7 +123,7 @@ export default function Testimonials() {
             />
           ))}
         </div>
-      </div>
+      </ScrollFade>
     </section>
   );
 }

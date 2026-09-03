@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
+import ScrollFade from "./ScrollFade";
 import { asset } from "@/lib/asset";
 import { FEATURES } from "@/lib/content";
 import { ArrowIcon } from "./Icons";
@@ -7,7 +8,7 @@ import { ArrowIcon } from "./Icons";
 export default function About() {
   return (
     <section id="about" className="scroll-mt-24 bg-gradient-to-b from-mist-blue to-white py-20 sm:py-28">
-      <div className="container-x">
+      <ScrollFade className="container-x">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Person over blob */}
           <Reveal className="relative flex justify-center">
@@ -50,7 +51,7 @@ export default function About() {
             </Link>
           </Reveal>
         </div>
-      </div>
+      </ScrollFade>
     </section>
   );
 }
