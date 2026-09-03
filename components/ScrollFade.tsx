@@ -21,9 +21,10 @@ export default function ScrollFade({
     const update = () => {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const fadeZone = vh * 0.5;
+      // Fully visible while on screen; as the section scrolls up past the top of
+      // the viewport it fades out gradually (over ~0.55 of a screen height).
       let op = 1;
-      if (r.bottom < fadeZone) op = Math.max(0, r.bottom / fadeZone);
+      if (r.top < 0) op = Math.max(0, 1 + r.top / (vh * 0.55));
       el.style.opacity = String(op);
     };
     update();
