@@ -62,7 +62,7 @@ export default function Process() {
               <div className="absolute left-[152px] top-[7px]">
                 <span className={nodeClass}>1</span>
               </div>
-              <p className="absolute left-[222px] top-[22px] font-medium text-ink">
+              <p className="absolute left-[222px] top-[22px] whitespace-nowrap font-medium text-ink">
                 Select Your Destination
               </p>
 
@@ -81,7 +81,7 @@ export default function Process() {
               <div className="absolute left-[307px] top-[220px]">
                 <span className={nodeClass}>2</span>
               </div>
-              <p className="absolute left-[377px] top-[236px] font-medium text-ink">
+              <p className="absolute left-[377px] top-[236px] whitespace-nowrap font-medium text-ink">
                 Upload Required Documents
               </p>
 

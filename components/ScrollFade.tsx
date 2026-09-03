@@ -21,11 +21,18 @@ export default function ScrollFade({
     const update = () => {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      // Fully visible while on screen; as the section scrolls up past the top of
-      // the viewport it fades out gradually (over ~0.55 of a screen height).
+      // As the section scrolls up past the top of the viewport, the whole section
+      // shrinks and fades away over ~0.8 of a screen height of scrolling (like the
+      // Framer transition where the section becomes smaller and disappears).
       let op = 1;
-      if (r.top < 0) op = Math.max(0, 1 + r.top / (vh * 0.55));
+      let scale = 1;
+      if (r.top < 0) {
+        const p = Math.min(1, -r.top / (vh * 0.8));
+        op = 1 - p;
+        scale = 1 - p * 0.2;
+      }
       el.style.opacity = String(op);
+      el.style.transform = `scale(${scale})`;
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -37,7 +44,10 @@ export default function ScrollFade({
   }, []);
 
   return (
-    <div ref={ref} className={`will-change-[opacity] ${className}`}>
+    <div
+      ref={ref}
+      className={`origin-center will-change-[opacity,transform] ${className}`}
+    >
       {children}
     </div>
   );

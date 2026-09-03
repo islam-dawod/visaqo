@@ -97,14 +97,14 @@ export default function Testimonials() {
           <button
             onClick={() => go(-1)}
             aria-label="Previous testimonial"
-            className="absolute left-0 top-1/2 grid h-11 w-11 -translate-y-1/2 -translate-x-1/2 place-items-center rounded-full bg-white text-ink-soft shadow-card transition-colors hover:text-brand-600 sm:h-12 sm:w-12"
+            className="absolute left-4 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-ink-soft shadow-card transition-colors hover:text-brand-600 sm:left-6 sm:h-12 sm:w-12"
           >
             <Chevron dir="left" />
           </button>
           <button
             onClick={() => go(1)}
             aria-label="Next testimonial"
-            className="absolute right-0 top-1/2 grid h-11 w-11 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-white text-ink-soft shadow-card transition-colors hover:text-brand-600 sm:h-12 sm:w-12"
+            className="absolute right-4 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-ink-soft shadow-card transition-colors hover:text-brand-600 sm:right-6 sm:h-12 sm:w-12"
           >
             <Chevron dir="right" />
           </button>
