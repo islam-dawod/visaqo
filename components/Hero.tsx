@@ -131,26 +131,29 @@ export default function Hero() {
             enough for the map. */}
         <div
           className={`relative mx-auto mt-2 w-full overflow-hidden transition-[height] duration-500 ${
-            mapActive ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[250px]"
+            mapActive ? "h-[440px] sm:h-[600px]" : "h-[240px] sm:h-[300px] lg:h-[270px]"
           }`}
         >
-          {/* 3D Spline globe — smaller sphere, more of it visible, shifted left */}
+          {/* 3D Spline globe — shifted left, shown as a rounded cap above the search bar */}
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${
               mapActive ? "opacity-0" : "opacity-100"
             }`}
           >
-            {/* Mobile/tablet: a big wide frame shows a rounded top cap (fits the narrow screen).
-                Desktop: a small square frame (no top clip), nudged down so ~the top half of a
-                smaller earth shows above the search bar, shifted left. */}
-            <div className="absolute left-1/2 top-0 aspect-[1482/878] w-[1400px] max-w-none -translate-x-1/2 sm:w-[1000px] lg:left-[33%] lg:top-[36px] lg:aspect-square lg:w-[520px]">
-              <iframe
-                src={SPLINE_GLOBE}
-                title="Interactive 3D globe"
-                className="pointer-events-none absolute inset-0 h-full w-full"
-                style={{ border: "none", background: "transparent" }}
-                loading="lazy"
-              />
+            {/* Position anchor (top-centre; nudged left + down on desktop) */}
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 lg:left-[34%] lg:top-[18px]">
+              {/* Spline draws the earth at a fixed size, so the frame must stay large (a small
+                  frame clips the globe into a rectangle). We keep a big square frame and shrink
+                  it visually with a CSS scale so the sphere stays perfectly round. */}
+              <div className="relative aspect-square w-[900px] max-w-none origin-top scale-[0.46] sm:scale-[0.62] lg:scale-[0.7]">
+                <iframe
+                  src={SPLINE_GLOBE}
+                  title="Interactive 3D globe"
+                  className="pointer-events-none absolute inset-0 h-full w-full"
+                  style={{ border: "none", background: "transparent" }}
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </div>
