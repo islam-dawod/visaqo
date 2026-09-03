@@ -13,9 +13,9 @@ export default function About() {
           <Reveal className="relative flex justify-center">
             <div className="relative w-full max-w-md">
               <img
-                src={asset("/assets/about-person.png")}
+                src={asset("/assets/person3sec.png")}
                 alt="A VisaQo travel specialist"
-                className="relative mx-auto w-full max-w-[420px]"
+                className="relative mx-auto w-full max-w-[440px]"
               />
             </div>
           </Reveal>
