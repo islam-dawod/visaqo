@@ -22,8 +22,11 @@ export default function DiscountClouds() {
       // 0 when the block is entering from the bottom, 1 once it has left the top.
       const progress = (vh - rect.top) / (vh + rect.height);
       const p = Math.max(0, Math.min(1, progress));
-      // 0 when the block is centred (clouds fully in), 1 at the edges (fully out).
-      const conv = Math.abs(p - 0.5) * 2;
+      // Clouds stay fully IN while the block is around the middle of the screen,
+      // then slide OUT to the sides as it approaches either edge — so they keep
+      // moving in/out with the scroll without vanishing while the section is read.
+      const d = Math.abs(p - 0.5);
+      const conv = Math.max(0, Math.min(1, (d - 0.12) / 0.34));
 
       cloudsRef.current.forEach((c) => {
         if (!c) return;
