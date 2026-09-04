@@ -34,18 +34,18 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative isolate overflow-hidden bg-[#DEDEDE] pb-28 pt-32 sm:pt-36">
+    <section id="hero" className="relative isolate overflow-hidden bg-[#F4F2EF] pb-28 pt-32 sm:pt-36">
       {/* World map backdrop (matches Framer: cover, centered, 0.8 opacity).
           Hidden once the route map takes over so the two maps never overlap. */}
       <div
         className={`pointer-events-none absolute inset-x-0 top-0 -z-20 h-[630px] bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
-          firstSelected ? "opacity-0" : "opacity-90"
+          firstSelected ? "opacity-0" : "opacity-80"
         }`}
         style={{ backgroundImage: `url(${asset("/assets/world-map.png")})` }}
       />
       {/* soft fade into the page at the bottom so content stays readable */}
       <div
-        className={`pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-[#DEDEDE] transition-opacity duration-500 ${
+        className={`pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-[#F4F2EF] transition-opacity duration-500 ${
           firstSelected ? "opacity-0" : "opacity-100"
         }`}
       />
