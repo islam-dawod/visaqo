@@ -7,7 +7,7 @@ import { ArrowIcon } from "./Icons";
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-24 bg-gradient-to-b from-mist-blue to-white py-20 sm:py-28">
+    <section id="about" className="scroll-mt-24 bg-[#F4F2EF] py-20 sm:py-28">
       <ScrollFade className="container-x">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Person over blob */}

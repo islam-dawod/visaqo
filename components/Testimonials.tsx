@@ -51,7 +51,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="scroll-mt-24 bg-[#F5F0EB] py-20 sm:py-28"
+      className="scroll-mt-24 bg-[#F4F2EF] py-20 sm:py-28"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

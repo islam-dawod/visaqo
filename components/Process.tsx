@@ -11,7 +11,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="scroll-mt-24 overflow-hidden bg-gradient-to-b from-white via-mist-lav to-white py-20 sm:py-28"
+      className="scroll-mt-24 overflow-hidden bg-[#F4F2EF] py-20 sm:py-28"
     >
       <ScrollFade className="container-x">
         <div className="grid items-center gap-14 lg:grid-cols-2">

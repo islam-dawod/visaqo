@@ -15,7 +15,7 @@ export default function Discounts() {
   return (
     <section
       id="discounts"
-      className="relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-white via-[#DCEBFB] to-[#AFD2F1] py-20 sm:py-28"
+      className="relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-[#F4F2EF] via-[#DCEBFB] to-[#AFD2F1] py-20 sm:py-28"
     >
       {/* drifting clouds entering from the sides */}
       <DiscountClouds />

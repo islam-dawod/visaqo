@@ -34,7 +34,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative overflow-hidden pb-28 pt-32 sm:pt-36">
+    <section id="hero" className="relative overflow-hidden bg-[#F4F2EF] pb-28 pt-32 sm:pt-36">
       {/* World map backdrop (matches Framer: cover, centered, 0.8 opacity).
           Hidden once the route map takes over so the two maps never overlap. */}
       <div
@@ -45,7 +45,7 @@ export default function Hero() {
       />
       {/* soft fade into the page at the bottom so content stays readable */}
       <div
-        className={`pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-white transition-opacity duration-500 ${
+        className={`pointer-events-none absolute inset-x-0 top-[380px] -z-20 h-[320px] bg-gradient-to-b from-transparent to-[#F4F2EF] transition-opacity duration-500 ${
           firstSelected ? "opacity-0" : "opacity-100"
         }`}
       />
