@@ -39,7 +39,7 @@ export default function Hero() {
           Hidden once the route map takes over so the two maps never overlap. */}
       <div
         className={`pointer-events-none absolute inset-x-0 top-0 -z-20 h-[630px] bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
-          firstSelected ? "opacity-0" : "opacity-80"
+          firstSelected ? "opacity-0" : "opacity-[0.35]"
         }`}
         style={{ backgroundImage: `url(${asset("/assets/world-map.png")})` }}
       />
