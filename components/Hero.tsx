@@ -34,7 +34,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative overflow-hidden bg-[#F4F2EF] pb-28 pt-32 sm:pt-36">
+    <section id="hero" className="relative isolate overflow-hidden bg-[#F4F2EF] pb-28 pt-32 sm:pt-36">
       {/* World map backdrop (matches Framer: cover, centered, 0.8 opacity).
           Hidden once the route map takes over so the two maps never overlap. */}
       <div
