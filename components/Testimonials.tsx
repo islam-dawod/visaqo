@@ -62,16 +62,16 @@ export default function Testimonials() {
           <p className="mt-2 text-xl text-ink-muted sm:text-2xl">Say About US</p>
         </Reveal>
 
-        <Reveal className="relative mt-12">
-          {/* Full-width single-card carousel */}
-          <div className="overflow-hidden rounded-[2.5rem]">
+        <Reveal className="relative mx-auto mt-12 max-w-4xl">
+          {/* Single-card carousel (compact, like the original) */}
+          <div className="overflow-hidden rounded-[2rem]">
             <div
               className="flex transition-transform duration-[600ms] ease-out"
               style={{ transform: `translateX(-${active * 100}%)` }}
             >
               {TESTIMONIALS.map((t) => (
                 <figure key={t.name} className="w-full shrink-0">
-                  <div className="flex flex-col items-center rounded-[2.5rem] bg-[#FBFAF8] px-6 py-12 text-center shadow-card sm:px-16 sm:py-16">
+                  <div className="flex flex-col items-center rounded-[2rem] bg-[#FBFAF8] px-6 py-10 text-center shadow-card sm:px-16 sm:py-12">
                     <img
                       src={asset("/assets/avatar.png")}
                       alt={t.name}
