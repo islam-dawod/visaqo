@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Reveal from "./Reveal";
 import ScrollFade from "./ScrollFade";
 import { asset } from "@/lib/asset";
@@ -48,24 +48,6 @@ export default function Testimonials() {
     return () => clearInterval(id);
   }, [paused, count]);
 
-  // Peek carousel: keep the active card centred; the neighbours peek at the edges.
-  const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    const recenter = () => {
-      const cont = containerRef.current;
-      const track = trackRef.current;
-      if (!cont || !track) return;
-      const card = track.children[active] as HTMLElement | undefined;
-      if (!card) return;
-      setOffset(card.offsetLeft - (cont.clientWidth - card.offsetWidth) / 2);
-    };
-    recenter();
-    window.addEventListener("resize", recenter);
-    return () => window.removeEventListener("resize", recenter);
-  }, [active]);
-
   return (
     <section
       id="testimonials"
@@ -81,21 +63,15 @@ export default function Testimonials() {
         </Reveal>
 
         <Reveal className="relative mt-12">
-          {/* Peek carousel */}
-          <div ref={containerRef} className="overflow-hidden">
+          {/* Full-width single-card carousel */}
+          <div className="overflow-hidden rounded-[2.5rem]">
             <div
-              ref={trackRef}
-              className="flex gap-5 transition-transform duration-[600ms] ease-out"
-              style={{ transform: `translateX(${-offset}px)` }}
+              className="flex transition-transform duration-[600ms] ease-out"
+              style={{ transform: `translateX(-${active * 100}%)` }}
             >
-              {TESTIMONIALS.map((t, i) => (
-                <figure
-                  key={t.name}
-                  className={`w-[86%] shrink-0 transition-all duration-500 sm:w-[78%] ${
-                    i === active ? "opacity-100" : "scale-95 opacity-50"
-                  }`}
-                >
-                  <div className="flex flex-col items-center rounded-[2rem] bg-[#FBFAF8] px-6 py-10 text-center shadow-card sm:px-16 sm:py-12">
+              {TESTIMONIALS.map((t) => (
+                <figure key={t.name} className="w-full shrink-0">
+                  <div className="flex flex-col items-center rounded-[2.5rem] bg-[#FBFAF8] px-6 py-12 text-center shadow-card sm:px-16 sm:py-16">
                     <img
                       src={asset("/assets/avatar.png")}
                       alt={t.name}
@@ -108,7 +84,7 @@ export default function Testimonials() {
                     <div className="mt-3">
                       <Stars rating={t.rating} />
                     </div>
-                    <blockquote className="mt-5 max-w-xl text-xl font-medium leading-relaxed text-ink sm:text-2xl">
+                    <blockquote className="mt-5 max-w-2xl text-xl font-medium leading-relaxed text-ink sm:text-2xl">
                       {t.quote}
                     </blockquote>
                   </div>
@@ -117,18 +93,18 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* Side arrows — sit inside the active card edges */}
+          {/* Side arrows — inside the card edges */}
           <button
             onClick={() => go(-1)}
             aria-label="Previous testimonial"
-            className="absolute left-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-ink-soft shadow-card transition-colors hover:text-brand-600 sm:left-[13%] sm:h-12 sm:w-12"
+            className="absolute left-4 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-ink-soft shadow-card transition-colors hover:text-brand-600 sm:left-6 sm:h-12 sm:w-12"
           >
             <Chevron dir="left" />
           </button>
           <button
             onClick={() => go(1)}
             aria-label="Next testimonial"
-            className="absolute right-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-ink-soft shadow-card transition-colors hover:text-brand-600 sm:right-[13%] sm:h-12 sm:w-12"
+            className="absolute right-4 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-ink-soft shadow-card transition-colors hover:text-brand-600 sm:right-6 sm:h-12 sm:w-12"
           >
             <Chevron dir="right" />
           </button>
